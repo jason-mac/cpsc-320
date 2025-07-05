@@ -1,0 +1,51 @@
+\section{Medieval Matching Problems}
+
+In the 14th century, the Bubonic plague killed between one-third and one-half of Europe's population. With much of the peasantry wiped out by the plague, there was a severe labour shortage as there were no longer enough serfs, tenant farmers, and labourers to work the existing farmland. As a positive result of all this, labourers had more say over whom they would work for, which led to increased wages, better working conditions, and, ultimately, the end of European feudalism.
+
+Here we consider an SMP variant where we have $k$ lords (employers), where employer $i$ has $s_i$ ``slots'' for peasant farmers (applicants), but the total number of slots $\sum_{i=1}^k s_i$ (which we'll denote by $n$) exceeds the number of workers (which we'll call $m$). Each employer has a complete preference list of applicants and vice versa. Moreover, every employer would rather have a slot filled by any applicant than leave a slot unfilled, since leaving a slot unfilled means land will go unmaintained and crops will rot in the fields. We call this the \textbf{Labour Shortage Matching Problem} (LSMP). A solution to LSMP requires that every applicant be matched to an employer, but not that every employer's slot be filled (since that would be impossible).
+
+\begin{questions}
+	
+	\question[1] We will need to expand our definition of ``instability'' for this problem. The definition we saw in class for RHP still applies to LSMP: namely, when $e_i$ is matched with one or more applicants and $a_j$ is matched with an employer, but $a_j$ prefers $e_i$ to their current employer and $e_i$ prefers $a_j$ over any one of its matched applicants.
+	
+	Describe a new type of instability that can occur between an applicant and an employer with one or more unfilled slots.
+	
+	\ifsolutions\input{q2a-sol.tex}\fi
+	
+	\question[1] Give and briefly explain a small example in which the only possible stable matching has an employer with no matches.
+	\ifsolutions\input{q2b-sol.tex}\fi
+
+      \question[2] Describe a (natural) modification of the Gale-Shapley Algorithm which could be  used to solve the Labour Shortage Matching Problem (LSMP). You may use words to explain your algorithm but should also provide pseudocode. No proof of correctness is being requested. Below is the Gale-Shapley algorithm, included mainly so you'll have the LaTeX source to work with:
+
+
+    \begin{algorithmic}[1]
+	   \Procedure{Gale-Shapley}{$E$, $A$}
+	   \State Initialize all employers and applicants as unmatched
+	     \While {there is an unmatched employer with at least one applicant on its preference list}
+	   \State choose such an employer $e \in E$
+	   \State make offer to next applicant $a \in A$ on $e$'s preference list
+	   \If {$a$ is unmatched}
+	   \State Match $e$ with $a$ \Comment{$a$ accepts $e$'s offer}
+	   \ElsIf {$a$ prefers $e$ to their current employer $e'$}
+	   \State Unmatch $a$ and $e'$ \Comment{$a$ rejects $e'$}
+	   \State Match $e$ with $a$ \Comment{$a$ accepts $e$'s offer}
+	   \EndIf
+	   \State cross $a$ off $e$'s preference list
+	   \EndWhile
+	   \State report the set of matched pairs as the final matching
+	   \EndProcedure
+    \end{algorithmic}
+
+      \ifsolutions\input{q2c-sol.tex}\fi
+
+    \question[3] Give a reduction from LSMP to RHP (recall that RHP is defined in \href{https://canvas.ubc.ca/courses/141582/files/32908753?module_item_id=6761017}{worksheet 2}). Remember that your reduction needs to describe both how to convert an instance of LSMP to an instance of RHP and how to convert the RHP solution back to an LSMP solution.
+	\ifsolutions\input{q2d-sol.tex}\fi
+	
+	\question[4] Prove the correctness of your reduction from 2.4. In other words, prove that if the matching returned by the RHP solver is correct (i.e., is a perfect matching with no instabilities and the correct number of residents at each hospital), then the matching returned by your reduction will:
+	\begin{enumerate}[label=(\alph*)]
+		\item Have exactly one employer matched to every applicant and no more than $s_i$ applicants matched to employer $i$ (we can think of this as our definition of a ``valid'' solution to this version of the problem); and
+		\item Contain no instabilities.
+	\end{enumerate}
+	\ifsolutions\input{q2e-sol.tex}\fi
+
+ \end{questions}

@@ -1,0 +1,83 @@
+\section{Red or Blue?}
+
+Boolean satisfiability (SAT)  is, as far as  Computer Scientists know, a  hard problem. We
+will define precisely what we mean by `hard', later on in the course. This problem is defined
+as follows:
+\begin{center}
+  \fbox{
+  \begin{minipage}{6in}
+    The input  is a  collection of  $m$ \emph{clauses} over  $n$ boolean  variables $X_1$,
+    $X_2$, \ldots $X_n$.  Each clause is a  disjunction of some of the  variables or their
+    complements.\vskip8pt
+
+    The problem consists in answering the question ``Is there a way to assign truth values
+    to each variable that makes \textbf{every} clause of the instance \textsc{True}?'' (For short this is called a {\em valid truth assignment}.)
+  \end{minipage}}
+\end{center}
+For instance, here is an instance of SAT made of 4 clauses over 3 variables:
+\begin{displaymath}
+  \begin{array}{rrl}
+    \hbox to 20pt{\hfil} & 1. & X_1 \lor \overline{X}_3 \\
+    & 2. & \overline{X}_1 \lor \overline{X}_2 \lor X_3 \\
+    & 3. & \overline{X}_2 \lor \overline{X}_3 \\
+    & 4. & X_3 \\
+  \end{array}
+\end{displaymath}
+Equivalently, you could think of this instance as the single boolean expression
+\begin{displaymath}
+  \begin{array}{rl}
+    \hbox to 20pt{\hfil} & (X_1 \lor \overline{X}_3) \land {}\\
+    & (\overline{X}_1 \lor \overline{X}_2 \lor X_3) \land {}\\
+    & (\overline{X}_2 \lor \overline{X}_3) \land {}\\
+    & X_3 \\
+  \end{array}
+\end{displaymath}
+
+There are  many other problems  whose level  of difficulty is  similar to that  of Boolean
+Satisfiability, and this problem has attracted a  lot of research. So while the problem is
+difficult to solve  in general, a number of  tools to solve instances of  the problem have
+been                       developed                        (see                       the
+\href{https://en.wikipedia.org/wiki/Boolean_satisfiability_problem}  {Wikipedia page}  for
+details and  links). We can take  advantage of these  tools to solve other  problems using
+\emph{reductions}.
+
+In this question, we will  look at the problem of determining whether or  not a graph is a
+\emph {split graph}. A graph $G = (V, E)$ is a \emph {split graph} if we can partition its
+vertex set $V$ into two subsets $V_1$, $V_2$ such that $V = V_1 \cup V_2$, $V_1 \cap V_2 =
+\emptyset$, every  two vertices of  $V_1$ are  connected by an  edge ($\forall v  \in V_1,
+\forall w \in  V_1, \{ v, w \}  \in E$) and no  two vertices of $V_2$ are  connected by an
+edge ($\forall  v \in V_2, \forall  w \in V_2,  \{ v, w  \} \notin E$). For  instance, the
+following graph  is a split graph,  where the vertices of  $V_1$ are colored Red,  and the
+vertices of $V_2$ are colored Blue.
+
+\begin{center}
+  \includegraphics[width=3.8in]{split-graph.png}
+\end{center}
+
+\begin{questions}
+\question[4] Show how  to reduce an arbitrary  instance of the split  graph recognition problem
+  into  an instance  of  \emph {Boolean  Satisfiability}  (SAT). (Remember that, per the problem specifications, your clauses must be in \href{https://en.wikipedia.org/wiki/Conjunctive_normal_form}{conjunctive normal form}.) Hint:  you  will want  to
+  introduce a single variable for each vertex of the graph.
+
+  \ifsolutions\input{q3a-sol.tex}\fi
+
+  \question[1] Write the collection of clauses you would get for the following graph:
+  
+   \centerline{\includegraphics[width=3in]{graph1.png}}
+
+  \ifsolutions\input{q3b-sol.tex}\fi
+
+\question[3] Explain briefly why, if  an input graph is a split graph, then  there is a way to
+  assign  values  to  the variables  in  the  instance  of  SAT that  makes  every  clause
+  \textsc{True}.
+
+  \ifsolutions\input{q3c-sol.tex}\fi
+
+\question[3] Explain briefly why,  if there is a way to assign values  to the variables in the
+  instance of SAT that  makes every clause \textsc{True}, then the  graph used to generate
+  the instance must be  a split graph. Show how you would determine  which vertices of $G$
+  belong to which of the two subsets of $V$.
+
+  \ifsolutions\input{q3d-sol.tex}\fi
+\end{questions}
+

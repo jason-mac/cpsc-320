@@ -1,0 +1,12 @@
+\section{With a Little Help from my Friends}
+
+[10 points] On the popular social network Q, users ``follow'' other users to see the content they release. We can model this with a directed graph with a user $u_i$ represented by a vertex, and with a directed edge $(u_i, u_j)$ to indicate that $u_i$ follows $u_j$.
+
+We say that two users $u_i$ and $u_j$ are \textbf{friends} if $u_i$ follows $u_j$ and $u_j$ follows $u_i$. We say that a group of users $W$ form a \textbf{friend group} if every user in $W$ is friends with every other user in $W$.
+
+The \textbf{Friend Group Problem} (FGP) asks: given a directed graph $G = (U,E)$ representing the ``follows'' structure of our social network, does the network contain a friend group of size $k$?
+
+Show how  to reduce an arbitrary  instance of FGP
+into  an instance  of  \emph {Boolean  Satisfiability}  (SAT). To save time, we are not requiring you to prove the correctness of this reduction (though it's good practice if you want to give it a try), but you must clearly explain the purpose of all the components of your reduction. Hint:  my reduction uses $nk$ variables, where $n$ is the number of users in $U$.
+
+\ifsolutions\input{q4-sol.tex}\fi
