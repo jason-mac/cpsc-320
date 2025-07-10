@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1751916448.70265 "a1.tex" "a1.pdf" "a1" 1751916450.1756 0
+["pdflatex"] 1752104621.06183 "a1.tex" "a1.pdf" "a1" 1752104622.40722 0
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -192,11 +192,11 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1728622656.90807 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1728622562 8221449 e1cc3a73d4d08f8f8c1a6176c2a142d0 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "a1.aux" 1751916450.02686 2944 a2bf73c6653f7b5c2d121b2d8d94765f "pdflatex"
-  "a1.out" 1751916450.03247 719 ce19624d0787e85c9e17df660f27621b "pdflatex"
+  "a1.aux" 1752104622.28245 2944 0ebb42a4c8a9d643b80f090afe12c400 "pdflatex"
+  "a1.out" 1752104622.28298 719 ce19624d0787e85c9e17df660f27621b "pdflatex"
   "a1.tex" 1751916448.01987 7211 51130312117a38be664e0ecd16001020 ""
   "graph1.png" 1751735689.28266 12590 2a4b626430c7b50abe234ad4ed3c8fe2 ""
-  "q1.tex" 1751735689.28277 1538 8b7024312bebcaebdf14fb883124232a ""
+  "q1.tex" 1752104620.07525 3632 7c09aed77bcd88a4736ce49b50bea8a6 ""
   "q2.tex" 1751735689.28292 4275 5d0439dde842b5668c7a06001f9b5011 ""
   "q3.tex" 1751735689.28302 4012 8c5ed3a961c5fff49c51a364d58e7484 ""
   "q4.tex" 1751735689.28314 1194 889e955e01fb527568f13d16452523bf ""

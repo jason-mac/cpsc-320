@@ -18,4 +18,73 @@ Here are the problems:
 	\question[4] \textbf{Scenario:} an SMP instance with $n \ge 2$ where all employers have identical preference lists. \textbf{Statement:} there is exactly one stable matching.
 	\ifsolutions\input{q1c-sol.tex}\fi
 
+	\(\exists (e, a) \notin M\) such that \(e\) prefers \(a\) over their current and \(a\) prefers \(e\) over their current, unstable.
+
+	\begin{soln}
+		This is sometimes true and sometimes false.
+		For example consider the following instance:
+		\begin{itemize}
+			\item	\(e_1 : a_1, a_2\)
+			\item \(e_2 : a_1, a_2\)
+			\item \(a_1 : e_1, e_2\)
+			\item \(a_2 : e_1, e_2\)
+		\end{itemize}
+		The only possible solutions would be \(M_1 = \{(e_1, a_1), (e_2, a_2)\}\) and \(M_2 = \{(e_1, a_2), (e_2, a_1)\}\).
+		But \(M_2\) is not stable since \((e_1, a_1) \notin M_2\) but \(e_1\) prefers \(a_1\) over \(a_2\) and \(a_1\) prefers \(e_1\) over \(e_2\).
+		Since \(G-S\) guarantees a solutino then \(M_1\) is a solution.
+
+		Then consider the next example consider the following instance:
+		\begin{itemize}
+			\item	\(e_1 : a_1, a_2\)
+			\item \(e_2 : a_2, a_1\)
+			\item \(a_1 : e_2, e_1\)
+			\item \(a_2 : e_1, e_2\)
+		\end{itemize}
+		The only possible solutions for this one is \(M_1 = \{(e_1, a_1), (e_2, a_2)\}\) and \(M_2 = \{(e_1, a_2), (e_2, a_1)\}\).
+
+		But in this case, both \(M_1, M_2\) are stable.
+	\end{soln}
+
+
+	\question[4] \textbf{Scenario:} an SMP instance with $n \ge 2$. \textbf{Statement:} there exists a stable matching in which nobody gets their first choice.
+
+	\begin{soln}
+		This is sometimes true and sometimes false.
+
+		Consider the following instance
+		\begin{itemize}
+			\item item
+		\end{itemize}
+
+
+	\end{soln}
+	\ifsolutions\input{q1b-sol.tex}\fi
+
+	\question[4] \textbf{Scenario:} an SMP instance with $n \ge 2$ where all employers have identical preference lists. \textbf{Statement:} there is exactly one stable matching.
+	\begin{itemize}
+		\item	\(e_1 : a_1, a_2\)
+		\item \(e_2 : a_1, a_2\)
+		\item \(a_1 : a_1, a_2\)
+		\item \(a_2 : a_1, a_2\)
+	\end{itemize}
+
+	\ifsolutions\input{q1c-sol.tex}\fi
+
+	\(\exists (e, a) \notin M\) such that \(e\) prefers \(a\) over their current and \(a\) prefers \(e\) over their current, unstable.
+
+	\begin{soln}
+
+		By \(G-S\) algorithm we are guaranteed one solution. Then suppose that there exists another solution \(M'\) such that \(M' \neq M\).
+
+		We know that each employer gets the best possible applicant they can get and also that the applicants will get the worse possible employer they can get.
+
+		Then we have that for some \((e, a) \in M\) that \((e, a) \notin M'\).
+
+		Then we get that \((e, a'), (e', a) \in M'\) for some \(e', a'\).
+
+		We know \(e\) and \(e'\) share the same applicant list and thus either \(a'\) ranks higher than \(a\) or the other way.
+
+
+	\end{soln}
+
 \end{questions}
