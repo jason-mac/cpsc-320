@@ -1,6 +1,6 @@
 \section{With a Little Help from my Friends}
 
-[10 points] On the popular social network Q, users ``follow'' other users to see the content they release. We can model this with a directed graph with a user $u_i$ represented by a vertex, and with a directed edge $(u_i, u_j)$ to indicate that $u_i$ follows $u_j$.
+ [10 points] On the popular social network Q, users ``follow'' other users to see the content they release. We can model this with a directed graph with a user $u_i$ represented by a vertex, and with a directed edge $(u_i, u_j)$ to indicate that $u_i$ follows $u_j$.
 
 We say that two users $u_i$ and $u_j$ are \textbf{friends} if $u_i$ follows $u_j$ and $u_j$ follows $u_i$. We say that a group of users $W$ form a \textbf{friend group} if every user in $W$ is friends with every other user in $W$.
 
@@ -8,5 +8,23 @@ The \textbf{Friend Group Problem} (FGP) asks: given a directed graph $G = (U,E)$
 
 Show how  to reduce an arbitrary  instance of FGP
 into  an instance  of  \emph {Boolean  Satisfiability}  (SAT). To save time, we are not requiring you to prove the correctness of this reduction (though it's good practice if you want to give it a try), but you must clearly explain the purpose of all the components of your reduction. Hint:  my reduction uses $nk$ variables, where $n$ is the number of users in $U$.
+
+\begin{soln}
+
+	We denote a boolean variable,
+	\[
+		X_{i, j}
+		\begin{cases}
+			T \text{ if vertex \(u_i\) is the \(j\)th friend of the friend group}, 1 \leq i \leq n, 1 \leq j \leq k \\
+			F \text{ otherwise }
+		\end{cases}
+	\]
+
+	We have that for a friend group \(W\) of size \(k\) that each vertex \(i, j \in W\) \((i, j), (j, i) \in E\).
+
+	We also have that a vertex \(i\) cannot appear twice in this friend group.
+
+
+\end{soln}
 
 \ifsolutions\input{q4-sol.tex}\fi

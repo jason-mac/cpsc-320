@@ -67,27 +67,25 @@ vertices of $V_2$ are colored Blue.
 		\[
 			X_i =
 			\begin{cases}
-				T, & \text{if } v_i \in V_1 \\
-				F, & \text{if } v_i \in V_2
+				T, & \text{if vertice } i \in V_1 \\
+				F, & \text{if vertice } i \in V_2
 			\end{cases}
 		\]
 
-		Observe for two any vertices \(\{v_i, v_j\}\) they form an edge or do not.
-
-		We see if \(v_i, v_j \in V_1\) then they share an edge, similarly, if \(v_i, v_j \in V_2\) then they do not share an edge.
+		We see if \(i, j \in V_1\) then they share an edge, similarly, if \(i, j \in V_2\) then they do not share an edge.
 
 		If two vertices share an edge, we cannot tell if both are in \(V_1\) but we know at least one is.
 
-		Hence, for for ever edge pair, \(\{v_i, v_j\}\) the disjunction is true, \((X_i \lor X_j)\).
+		Hence, for for ever edge pair, \(\{i, j\}\) the disjunction is true, \((X_i \lor X_j)\).
 
-		Now consider pairs \(\{v_i, v_j\} \notin E\), observe if pairs do not share an edge, then both are not in \(V_1\).
+		Now consider pairs \(\{i, j\} \notin E\), observe if pairs do not share an edge, then both are not in \(V_1\).
 
 		In particular, the statement \(\lnot (X_i \land X_j )\) is true for every non-edge pair, equivalently, \((\lnot X_i \lor \lnot X_j)\) holds.
 
 		Then we construct the SAT instance,
 
 		\[
-			\left(\bigwedge_{\{v_i, v_j\} \notin E}  (\lnot X_i \lor \lnot X_j)\right) \land \left(\bigwedge_{\{v_i, v_j\} \in E}(X_i \lor X_j)\right).
+			\left(\bigwedge_{\{i, j\} \notin E}  (\lnot X_i \lor \lnot X_j)\right) \land \left(\bigwedge_{\{i, j\} \in E}(X_i \lor X_j)\right).
 		\]
 
 		If such a solution to this SAT instance exists, then \(G\) is a split graph.
@@ -136,7 +134,7 @@ vertices of $V_2$ are colored Blue.
 
 		For each \(\{i, j\}\) either they form an edge or not. If they form an edge, then both cannot be in \(V_2\).
 
-		Hence at least one is in \(V_1\), and thus, the clause \(X_i \lor X_j\) is true.
+		Hence at least one is in \(V_1\), and thus, the corresponding clause, \(X_i \lor X_j\) is true.
 
 		If they are not an edge, then both are not in \(V_1\). Thus, at least one is in \(V_2\). Hence, \(\lnot X_i \lor \lnot X_j\) is true.
 
@@ -160,8 +158,15 @@ vertices of $V_2$ are colored Blue.
 
 		Suppose that \(i, j \in V_1\) this means that both of \(X_i, X_j\) were true.
 
-		Hence,
+		Hence, this means that \(\lnot X_i \lor \lnot X_j\) is false. This corresponds to \(\{i, j\}\) not being an edge, but if it is false, then they must be a pair.
 
+		Now, the other case if \(i, j \in V_2\) then each of \(X_i, X_j\) were false. In other words, \(X_i \lor X_j\) is false.
+
+		This corresponds to \(\{i, j\}\) being an edge, but since it is false this means that they are not an edge pair.
+
+		Now assume that \(V_1 \cap V_2 \neq \varnothing\), then there is some \(i\) in the intersection so that \(X_i\) is true and false.
+
+		But this is a contradiction, since we assumed we were able to appropiately assign truth values to each boolean varibale, thus \(V_1, V_2\) form a partition of \(V\).
 
 	\end{soln}
 
