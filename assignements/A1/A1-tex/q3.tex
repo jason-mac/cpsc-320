@@ -4,33 +4,33 @@ Boolean satisfiability (SAT)  is, as far as  Computer Scientists know, a  hard p
 will define precisely what we mean by `hard', later on in the course. This problem is defined
 as follows:
 \begin{center}
-  \fbox{
-  \begin{minipage}{6in}
-    The input  is a  collection of  $m$ \emph{clauses} over  $n$ boolean  variables $X_1$,
-    $X_2$, \ldots $X_n$.  Each clause is a  disjunction of some of the  variables or their
-    complements.\vskip8pt
+	\fbox{
+		\begin{minipage}{6in}
+			The input  is a  collection of  $m$ \emph{clauses} over  $n$ boolean  variables $X_1$,
+			$X_2$, \ldots $X_n$.  Each clause is a  disjunction of some of the  variables or their
+			complements.\vskip8pt
 
-    The problem consists in answering the question ``Is there a way to assign truth values
-    to each variable that makes \textbf{every} clause of the instance \textsc{True}?'' (For short this is called a {\em valid truth assignment}.)
-  \end{minipage}}
+			The problem consists in answering the question ``Is there a way to assign truth values
+			to each variable that makes \textbf{every} clause of the instance \textsc{True}?'' (For short this is called a {\em valid truth assignment}.)
+		\end{minipage}}
 \end{center}
 For instance, here is an instance of SAT made of 4 clauses over 3 variables:
 \begin{displaymath}
-  \begin{array}{rrl}
-    \hbox to 20pt{\hfil} & 1. & X_1 \lor \overline{X}_3 \\
-    & 2. & \overline{X}_1 \lor \overline{X}_2 \lor X_3 \\
-    & 3. & \overline{X}_2 \lor \overline{X}_3 \\
-    & 4. & X_3 \\
-  \end{array}
+	\begin{array}{rrl}
+		\hbox to 20pt{\hfil} & 1. & X_1 \lor \overline{X}_3                     \\
+		                     & 2. & \overline{X}_1 \lor \overline{X}_2 \lor X_3 \\
+		                     & 3. & \overline{X}_2 \lor \overline{X}_3          \\
+		                     & 4. & X_3                                         \\
+	\end{array}
 \end{displaymath}
 Equivalently, you could think of this instance as the single boolean expression
 \begin{displaymath}
-  \begin{array}{rl}
-    \hbox to 20pt{\hfil} & (X_1 \lor \overline{X}_3) \land {}\\
-    & (\overline{X}_1 \lor \overline{X}_2 \lor X_3) \land {}\\
-    & (\overline{X}_2 \lor \overline{X}_3) \land {}\\
-    & X_3 \\
-  \end{array}
+	\begin{array}{rl}
+		\hbox to 20pt{\hfil} & (X_1 \lor \overline{X}_3) \land {}                     \\
+		                     & (\overline{X}_1 \lor \overline{X}_2 \lor X_3) \land {} \\
+		                     & (\overline{X}_2 \lor \overline{X}_3) \land {}          \\
+		                     & X_3                                                    \\
+	\end{array}
 \end{displaymath}
 
 There are  many other problems  whose level  of difficulty is  similar to that  of Boolean
@@ -44,40 +44,127 @@ details and  links). We can take  advantage of these  tools to solve other  prob
 In this question, we will  look at the problem of determining whether or  not a graph is a
 \emph {split graph}. A graph $G = (V, E)$ is a \emph {split graph} if we can partition its
 vertex set $V$ into two subsets $V_1$, $V_2$ such that $V = V_1 \cup V_2$, $V_1 \cap V_2 =
-\emptyset$, every  two vertices of  $V_1$ are  connected by an  edge ($\forall v  \in V_1,
-\forall w \in  V_1, \{ v, w \}  \in E$) and no  two vertices of $V_2$ are  connected by an
+	\emptyset$, every  two vertices of  $V_1$ are  connected by an  edge ($\forall v  \in V_1,
+	\forall w \in  V_1, \{ v, w \}  \in E$) and no  two vertices of $V_2$ are  connected by an
 edge ($\forall  v \in V_2, \forall  w \in V_2,  \{ v, w  \} \notin E$). For  instance, the
 following graph  is a split graph,  where the vertices of  $V_1$ are colored Red,  and the
 vertices of $V_2$ are colored Blue.
 
 \begin{center}
-  \includegraphics[width=3.8in]{split-graph.png}
+	\includegraphics[width=3.8in]{split-graph.png}
 \end{center}
 
 \begin{questions}
-\question[4] Show how  to reduce an arbitrary  instance of the split  graph recognition problem
-  into  an instance  of  \emph {Boolean  Satisfiability}  (SAT). (Remember that, per the problem specifications, your clauses must be in \href{https://en.wikipedia.org/wiki/Conjunctive_normal_form}{conjunctive normal form}.) Hint:  you  will want  to
-  introduce a single variable for each vertex of the graph.
+	\question[4] Show how  to reduce an arbitrary  instance of the split  graph recognition problem
+	into  an instance  of  \emph {Boolean  Satisfiability}  (SAT). (Remember that, per the problem specifications, your clauses must be in \href{https://en.wikipedia.org/wiki/Conjunctive_normal_form}{conjunctive normal form}.) Hint:  you  will want  to
+	introduce a single variable for each vertex of the graph.
 
-  \ifsolutions\input{q3a-sol.tex}\fi
+	\begin{soln}
+		We have for any \(v_i \in V\) that either \(v_i \in V_1\) or \(v_i \in V_2\) but not both since they form a partition over \(V\).
 
-  \question[1] Write the collection of clauses you would get for the following graph:
-  
-   \centerline{\includegraphics[width=3in]{graph1.png}}
+		Then denote the boolean variable \(X_i\) so that
 
-  \ifsolutions\input{q3b-sol.tex}\fi
+		\[
+			X_i =
+			\begin{cases}
+				T, & \text{if } v_i \in V_1 \\
+				F, & \text{if } v_i \in V_2
+			\end{cases}
+		\]
 
-\question[3] Explain briefly why, if  an input graph is a split graph, then  there is a way to
-  assign  values  to  the variables  in  the  instance  of  SAT that  makes  every  clause
-  \textsc{True}.
+		Observe for two any vertices \(\{v_i, v_j\}\) they form an edge or do not.
 
-  \ifsolutions\input{q3c-sol.tex}\fi
+		We see if \(v_i, v_j \in V_1\) then they share an edge, similarly, if \(v_i, v_j \in V_2\) then they do not share an edge.
 
-\question[3] Explain briefly why,  if there is a way to assign values  to the variables in the
-  instance of SAT that  makes every clause \textsc{True}, then the  graph used to generate
-  the instance must be  a split graph. Show how you would determine  which vertices of $G$
-  belong to which of the two subsets of $V$.
+		If two vertices share an edge, we cannot tell if both are in \(V_1\) but we know at least one is.
 
-  \ifsolutions\input{q3d-sol.tex}\fi
+		Hence, for for ever edge pair, \(\{v_i, v_j\}\) the disjunction is true, \((X_i \lor X_j)\).
+
+		Now consider pairs \(\{v_i, v_j\} \notin E\), observe if pairs do not share an edge, then both are not in \(V_1\).
+
+		In particular, the statement \(\lnot (X_i \land X_j )\) is true for every non-edge pair, equivalently, \((\lnot X_i \lor \lnot X_j)\) holds.
+
+		Then we construct the SAT instance,
+
+		\[
+			\left(\bigwedge_{\{v_i, v_j\} \notin E}  (\lnot X_i \lor \lnot X_j)\right) \land \left(\bigwedge_{\{v_i, v_j\} \in E}(X_i \lor X_j)\right).
+		\]
+
+		If such a solution to this SAT instance exists, then \(G\) is a split graph.
+	\end{soln}
+
+	\ifsolutions\input{q3a-sol.tex}\fi
+
+	\question[1] Write the collection of clauses you would get for the following graph:
+
+	\begin{soln}
+		\[
+			(\lnot X_0 \lor \lnot X_1), \quad (\lnot X_1 \lor \lnot X_4), \quad
+			(\lnot X_1 \lor \lnot X_2), \quad (\lnot X_2 \lor \lnot X_3),
+		\]
+		\[
+			(X_0 \lor  X_2), \quad
+			(X_0 \lor  X_3), \quad
+			(X_0 \lor  X_4), \quad
+			(X_1 \lor  X_3), \quad
+			(X_2 \lor  X_4), \quad
+			(X_3 \lor  X_4)
+		\]
+	\end{soln}
+
+	\centerline{\includegraphics[width=3in]{graph1.png}}
+
+	\ifsolutions\input{q3b-sol.tex}\fi
+
+	\question[3] Explain briefly why, if  an input graph is a split graph, then  there is a way to
+	assign  values  to  the variables  in  the  instance  of  SAT that  makes  every  clause
+	\textsc{True}.
+
+	\begin{soln}
+		If \(G = (V, E)\) is a split graph then let \(V_1, V_2\) be the respective partition as defined.
+
+		We assign for each \(i \in V\),
+		\[
+			X_i =
+			\begin{cases}
+				T & \text{if } i \in V_1 \\
+				F & \text{if } i \in V_2
+			\end{cases}
+		\]
+
+		Having that \(V_1, V_2\) form a partition, this boolean variable is well defined.
+
+		For each \(\{i, j\}\) either they form an edge or not. If they form an edge, then both cannot be in \(V_2\).
+
+		Hence at least one is in \(V_1\), and thus, the clause \(X_i \lor X_j\) is true.
+
+		If they are not an edge, then both are not in \(V_1\). Thus, at least one is in \(V_2\). Hence, \(\lnot X_i \lor \lnot X_j\) is true.
+
+		Having considered every possible clause in the reduced SAT instance, we have shown this is a satisfying truth assigment, and thus the SAT is satisfiable.
+
+	\end{soln}
+
+	\ifsolutions\input{q3c-sol.tex}\fi
+
+	\question[3] Explain briefly why,  if there is a way to assign values  to the variables in the
+	instance of SAT that  makes every clause \textsc{True}, then the  graph used to generate
+	the instance must be  a split graph. Show how you would determine  which vertices of $G$
+	belong to which of the two subsets of $V$.
+
+	\begin{soln}
+		Suppose that we have a satisfying truth assingment to the SAT.
+
+		Then for each assignment \(X_i\), if \(X_i\) is true, we place vertex \(i\) in \(V_1\) and if false, we place it into \(V_2\).
+
+		We now aim to show this makes \(G\) a split graph.
+
+		Suppose that \(i, j \in V_1\) this means that both of \(X_i, X_j\) were true.
+
+		Hence,
+
+
+	\end{soln}
+
+	\ifsolutions\input{q3d-sol.tex}\fi
 \end{questions}
 

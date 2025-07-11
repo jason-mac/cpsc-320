@@ -105,69 +105,13 @@ Please list the CWLs of all group members here (even if you are submitting by yo
 \input{q1.tex}
 \ifsolutions\else\newpage\fi
 
-\begin{soln}
-	The statement is false. Take \(n = 2\) and we construct the following SMP instance of \(2\) employees and applicants denoted by
-	\(E = \{e_1, e_2\}\) and \(A = \{a_1, a_2\}\) respectively. We define this instance through the following preference lists:
-
-	\begin{itemize}
-		\item \(a_1 : e_1, e_2\)
-		\item \(a_2 : e_2, e_1\)
-		\item \(e_1 : a_2, a_1\)
-		\item \(e_2 : a_1, a_2\)
-	\end{itemize}
-
-	We have that a stable matching can be found through the pairings, \((e_1, a_1), (e_2, a_2)\), but also with \((e_1, a_2), (e_2, a_1)\).
-
-	Now, for each \(n > 2\), we construct a new instance through the following:
-
-	\begin{itemize}
-		\item \(a_1 : e_1, e_2, \dots\)
-		\item \(a_2 : e_2, e_1, \dots\)
-		\item \(a_i : e_i, \dots\)
-		\item \(e_1 : a_2, a_1, \dots\)
-		\item \(e_2 : a_1, a_2, \dots\)
-		\item \(e_i : a_i, \dots\)
-	\end{itemize}
-
-	for \(i \in \{3, 4, \dots, n\}\), and where the permutation of the preference list does not matter except for the specified entry.
-
-	Then we have the two following stable matchings for such an instance:
-
-	\(S_1 = \{(e_i, a_i) : i = 3, 4, \dots, n\} \cup \{(e_1, a_1), (e_2, a_2)\}\), and
-
-	\(S_2 = \{(e_i, a_i) : i = 3, 4, \dots, n\} \cup \{(e_1, a_2), (e_2, a_1)\}\).
-
-	We never have an instability since by construction, for \(3 \leq i \leq n\), \(e_i\) always prefers \(a_i\) over anyone else and vice versa.
-
-	In other words, not every instance for \(n \geq 2\) will have exactly one stable matching, but there always exists at least one by \(G-S\) algorithm.
 
 
 
-\end{soln}
 
 
 \input{q2.tex}
 \ifsolutions\else\newpage\fi
-
-
-
-\begin{soln}
-	This statement is never true.
-
-	Let \(n \geq 2\), suppose we are given an instance an SMP. Denote set of employees by \(E\) and applicants by \(A\).
-	We assume for the sake of contradiction, there exists a matching \(M\) such that nobody gets their first choice.
-	Then in the G-S algorithm, this implies that for each \(e \in E\) they are either rejected on their first offer or
-	their applicant to which they made their first offer to is poached by someone else.
-
-	We also observe that the top choices of each employer is not unique, otherwise each employer would have never have been rejected in their first choice and our assumption is false.
-	Then we have that there exists \(e_1, e_2 \in E\) such that their top choice of applicant is some \(a \in A\).
-	Observe that the top employer for \(a\) cannot be \(e_1\) or \(e_2\) since this would mean that either \(e_1\) or \(e_2\) is never rejected by \(a\) or have \(a\) stolen from them.
-
-	Thus, the top employer choice for \(a\) is some \(e \in E\).
-
-
-
-\end{soln}
 
 \input{q3.tex}
 \ifsolutions\else\newpage\fi

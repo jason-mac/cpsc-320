@@ -10,27 +10,9 @@ Here we consider an SMP variant where we have $k$ lords (employers), where emplo
 
 	Describe a new type of instability that can occur between an applicant and an employer with one or more unfilled slots.
 
-	\begin{soln}
-		If there is some employee \(e_i\) with at least one free slot, and there is some applicant, \(a_j\), such that \(a_j\) prefers \(e_i\) over their current employer, then this is unstable.
-	\end{soln}
-
 	\ifsolutions\input{q2a-sol.tex}\fi
 
 	\question[1] Give and briefly explain a small example in which the only possible stable matching has an employer with no matches.
-	\begin{soln}
-
-		Consider the instance,
-		\begin{itemize}
-			\item \(e_1 : a_1\)
-			\item \(e_2 : a_1\)
-			\item \(a_1 : e_1\)
-		\end{itemize}
-		Such that both employers contain one slot. We have two possible matchings \((e_1, a_1)\) or \((e_2, a_1)\).
-
-		For \(\{(e_2, a_1)\}\) there is incentive for \(a_1\) to leave for \(e_1\) since \(e_1\) has an empty slot, which is unstable.
-
-		So then, the solution must be \(\{(e_1, a_1)\}\) which leaves \(e_2\) with no assigned applicants.
-	\end{soln}
 	\ifsolutions\input{q2b-sol.tex}\fi
 
 	\question[2] Describe a (natural) modification of the Gale-Shapley Algorithm which could be  used to solve the Labour Shortage Matching Problem (LSMP). You may use words to explain your algorithm but should also provide pseudocode. No proof of correctness is being requested. Below is the Gale-Shapley algorithm, included mainly so you'll have the LaTeX source to work with:
@@ -75,7 +57,7 @@ Here we consider an SMP variant where we have $k$ lords (employers), where emplo
 
 		Given the solution \(S'\) from RHP, we convert it to LSMP by deleting each pair \((e, f_i)\) for \(m + 1 \leq i \leq n\).
 
-		Thus, the LSMP solution is \(S = S' \setminus \{(e_i, f_j) : 1 \leq i \leq k, m + 1 \leq j \leq n\}\).
+		Thus, the LSMP solution is \(S = S' \setminus \{(e_i, f_j) : 1 \leq i \leq k, m + 1 \leq j \leq n}\).
 
 	\end{soln}
 	\ifsolutions\input{q2d-sol.tex}\fi
@@ -86,47 +68,7 @@ Here we consider an SMP variant where we have $k$ lords (employers), where emplo
 		\item Contain no instabilities.
 	\end{enumerate}
 	\begin{soln}
-		Since RHP will return a valid solution then each real applicant must be matched with exactly one employer, and the number of applicants in an employer's slots will not exceed its capacity.
-		Thus, when deleting the fake applicants, we can only strictly reduce the number of slots filled for any particular employer, hence the number of applicants does not exceed its capacity.
-
-		Proof of stability: We suppose that the solution \(S\) for LSMP created through the reduction is unstable, we aim to show that \(S'\) in RHP must be unstable.
-
-		If \(S\) is unstable, then there are two cases.
-
-		Case 1: Assume there is some employer \(e_i\) such that all of its slots are filled and there is some applicant \(a_j\)
-		so that \(e_i\) prefers \(a_j\) over any of its assigned applicants and \(a_j\) prefers \(e_i\) over its assigned employer.
-
-		Notice that each of these are real applicants, otherwise \(e_i\) would have a free slot from deleting fake applicants.
-
-		For some applicant that \(e_i\) does not prefer \(a_j\) over denote them by \(a'\).
-
-		Similary denote the current employer of \(a_j\) by \(e'\). And so \((e', a_j), (e_i, a') \in S\), but \((e_i, a_j) \notin S\).
-
-		Since none of these applicants are fake, we must have that \((e', a_j), (e_i, a') \in S'\), similarly, \((e_i, a_j) \notin S'\).
-
-		The applicant list of \(e_i\) remains the same in RHP except that we have appended fake applicants and it's slots are still filled.
-		Similarly, the preference list of \(a_j\) remains unchanged, by construction.
-
-		Hence, it still remains that \(e_i\) prefers \(a_j\) over \(a'\), and \(a_j\) prefers \(e_i\) over \(e'\).
-
-		Then the solution \(S'\) is unstable.
-
-		Case 2: Now assume that some employer \(e_i\) with a free slot, but there is some applicant \(a_j\) such that they prefer \(e_i\) over their current employer \(e'\).
-
-		This means that for some fake applicant(s), \(f_p\), that \((e_i, f_p)\) was deleted from \(S'\) to create \(S\).
-
-		Then within RHP, we must have that \(e_i\) is full and that it is assigned to least one fake applicant \(f_p\).
-
-		So, if \((e', a_j) \in S\) then \((e', a_j) \in S'\) since it is a real applicant.
-
-		And we have that \((e_i, a_j) \notin S'\) since \((e_i, a_j) \notin S\).
-
-		By construction, we have that \(e_i\) prefers \(a_j\) over \(f_p\) but also that \(a_j\) prefers \(e_i\) over \(e'\).
-
-		Hence, \(S'\) is unstable.
-
-		This concludes the proof of the correctness of the reduction.
-
+		Proof: We suppose that the solution LSMP \(S\) created through the reduction is unstable, we aim to show that \(S'\) must be unstable.
 	\end{soln}
 	\ifsolutions\input{q2e-sol.tex}\fi
 

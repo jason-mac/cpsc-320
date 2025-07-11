@@ -31,7 +31,7 @@ Here are the problems:
 		\end{itemize}
 		The only possible solutions would be \(M_1 = \{(e_1, a_1), (e_2, a_2)\}\) and \(M_2 = \{(e_1, a_2), (e_2, a_1)\}\).
 		But \(M_2\) is not stable since \((e_1, a_1) \notin M_2\) but \(e_1\) prefers \(a_1\) over \(a_2\) and \(a_1\) prefers \(e_1\) over \(e_2\).
-		Since \(G-S\) guarantees a solutino then \(M_1\) is a solution.
+		Since \(G-S\) guarantees a solution then the only other possibility, \(M_1\), is the only solution.
 
 		Then consider the next example consider the following instance:
 		\begin{itemize}
@@ -42,7 +42,7 @@ Here are the problems:
 		\end{itemize}
 		The only possible solutions for this one is \(M_1 = \{(e_1, a_1), (e_2, a_2)\}\) and \(M_2 = \{(e_1, a_2), (e_2, a_1)\}\).
 
-		But in this case, both \(M_1, M_2\) are stable.
+		But in this case, both \(M_1, M_2\) are stable since for each pair, at least one of the entries prefers their partners over other possibilties.
 	\end{soln}
 
 
@@ -70,21 +70,98 @@ Here are the problems:
 
 	\ifsolutions\input{q1c-sol.tex}\fi
 
-	\(\exists (e, a) \notin M\) such that \(e\) prefers \(a\) over their current and \(a\) prefers \(e\) over their current, unstable.
-
 	\begin{soln}
 
-		By \(G-S\) algorithm we are guaranteed one solution. Then suppose that there exists another solution \(M'\) such that \(M' \neq M\).
+		This statement is always true.
 
-		We know that each employer gets the best possible applicant they can get and also that the applicants will get the worse possible employer they can get.
+		Proof: Suppose we are given an instance with \(n \geq 2\).
 
-		Then we have that for some \((e, a) \in M\) that \((e, a) \notin M'\).
+		By \(G-S\) algorithm we are guaranteed one solution, denote it by \(M_{GS}\).
 
-		Then we get that \((e, a'), (e', a) \in M'\) for some \(e', a'\).
+		For sake of contradiction, we assume there exists another stable solution \(S\) such that \(S \neq M_{GS}\).
 
-		We know \(e\) and \(e'\) share the same applicant list and thus either \(a'\) ranks higher than \(a\) or the other way.
+		Then we have that there exists \((e, a) \in M_{GS}\) so that \((e, a) \notin S\), this is possible since \(n \geq 2\).
+
+		Now either \(a\) is the number one choice in the applicant list for all employers or not.
+
+		\begin{itemize}
+			\item \textbf{Case 1:} Suppose that \(a\) is at the top of the applicant list.
+
+			      Since \((e, a) \notin S\) we have \((e, a_s), (e_s, a) \in S\) for some employer and applicant resepectively.
+
+			      We consider the runnings of the \(G-S\) algorithm to produce \(M_{GS}\).
+
+			      Since \(a\) is the top choice for all employers, \(a\) will receive an offer from all employers.
+
+			      This means that \(a\) rejected all other employers and accepted the offer from \(e\).
+
+			      Which implies the number one choice of employer for \(a\) was \(e\).
+
+			      By assumption, \(e_s\) prefers \(a\) to \(a_s\) since all employers share the same applicant list.
+
+			      Then observe that we have established the following:
+
+			      \begin{enumerate}
+				      \item \((e, a) \notin S\), and \((e_s, a), (e, a_s) \in S\),
+				      \item \(e\) prefers \(a\) over \(a_s\), and
+				      \item \(a\) prefers \(e\) over \(e_s\).
+			      \end{enumerate}
+
+			      But by definition, this makes \(S\) unstable, which is a contradiction of the assumption.
+
+			\item \textbf{Case 2:} Suppose \(a\) is not at the top of the applicant list for all employers.
+
+			      Then we have that for some applicant \(a_1\), that they are at the top choice for each employer.
+
+			      And we also have that \((e_1, a_1) \in M_{GS}\) for some employer \(e_1\).
+
+			      Again, we make the same argument that \(a_1\) must prefer \(e_1\) over all other employers.
+
+			      Thus, both \(e_1\) and \(a_1\) prefer each other over all other employers and applicants.
+
+			      Observe that if \((e_1, a_1) \notin S\) then the argument from \textbf{Case 1} would lead to \(S\) not being stable.
+
+			      So then we must have that \((e_1, a_1) \in S\).
+		\end{itemize}
+		In other words, there always exists pair \((e, a)\) such that they prefer each other over anyone else in \(S\).
+
+		We know that for \(n = 2\), any instance with employers that have the same applicant list, there is a unqiue solution.
+
+		Let an integer \(k \geq 2\) and suppose that for such instances with \(n = 2, 3, \dots, k\) employees, that there is a unique solution.
+
+		Then consider an instance with \(k + 1\) employers and applicants with identical applicant lists.
+
+		We remove the employer and applicant \(e_{k+1}, a_{k+1}\) such that they prefer each other over anyone else, and \(a_{k+1}\) is the number one applicant.
+
+		Such pairs exists for every instance size, and we will index using them the instance size.
+
+		Then for the instance with \(2\) employees and applicants we know there exists a unqiue solution, where it is constructed using the previous ruling.
+
+		Denote the this solution by \(M_2\). Notice for \(M_2\) there exists \(e_2, a_2\) such that they prefer each other in this instance, and as well as \(e_1, a_1\).
+
+		We then construct \(M_3 := M_2 \cup \{(e_3, a_3)\}\).
+
+		And thus, \(M_{k} = M_{k - 1} \cup \{(e_k, a_k)\}\).
+
+		We have that for any \(e_i\) will always prefer their respective indexed partners, and thus
+
+
+		We maintain the order of the employer lists and applicant lists in this new instance.
+
+		By assumption, there exists a unique solution for this instance, denote it \(M_k\).
+
+		Then consider \(M_{k+1} := M_k \cup \{(e_1, a_1)\}\).
+
+		Observe that for any \((e, a) \in M_{k+1}\) and for any \((e, a_1), (e_1, a) \notin M_{k+1}\) that either
 
 
 	\end{soln}
+	Then assume \((e', a') \in S\). So again, \((e, a_s), (e_s, a) \in S\) for some employer and applicant.
+
+	Then notice that \((e, a'), (e_s, a') \notin S\) given that \((e', a') \in S\).
+
+	Then either \(a\) prefers \(e\) over \(e_s\) or the other way around.
+
+	In either case, we get instability in \(S\) since \((e, a'), (e_s, a') \notin S\) and the employers prefer \(a'\).
 
 \end{questions}
