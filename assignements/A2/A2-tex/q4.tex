@@ -1,0 +1,34 @@
+\section{Weekly Meeting Logistics}
+
+You're the manager of an animal shelter, which is run by a few full-time staff members and a group of $n$ volunteers. Each of the volunteers is scheduled to work one shift during the week. There are different jobs associated with these shifts (such as caring for the animals, interacting with visitors to the shelter, handling administrative tasks, etc.), but each shift is a single contiguous interval of time. Shifts cannot span more than one week (e.g., we cannot have a shift from 10 PM Saturday to 6 AM Sunday). There can be multiple shifts going on at once.
+
+You'd like to arrange a weekly meeting with your staff and volunteers, but you have too many volunteers to be able to find a meeting time that works for everyone. Instead, you'd like to identify a suitable subset of volunteers to instead attend the weekly meeting. You'd like for every volunteer to have a shift that overlaps (at least partially) with a volunteer who is attending the meeting. Your thinking is that you can't personally meet with every single volunteer, but you would like to at least meet with people who have been working with every volunteer (and may be able to let you know if a volunteer is disgruntled or having any difficulties with their performance, etc.). Because your volunteers are busy people, you want to accomplish this with the fewest possible volunteers.
+
+Your volunteer shifts are given as an input list $V$, and each volunteer shift $v_i$ is defined by a start and finish time $(s_i, f_i)$. Your goal is to find  the smallest subset of volunteer shifts such that every shift in $V$ overlaps with at least one of the chosen shifts. A shift $v_i=(1,4)$ overlaps with the shift $v_j=(3,5)$ but not with the shift $v_k=(4,6)$. 
+
+\begin{questions}
+\question[2] Your co-worker proposes the following greedy algorithm to select volunteers for your meeting:
+\begin{quote}
+    Select the shift $v$ that overlaps with the most other shifts, discard all shifts that overlap with $v$, and recurse on the remaining shifts.
+\end{quote}
+Give and briefly explain a counterexample to prove that this greedy strategy is not optimal.
+
+\ifsolutions\input{q4a-sol.tex}\fi 
+
+\question[3] Give a greedy algorithm to solve this problem. Give an unambiguous specification of your algorithm using  a \textbf{brief, plain English description}. Do not write pseudocode or worry about implementation details yet. (You may do this in part 5 if you feel that it's necessary to achieve a particular runtime.)
+
+\ifsolutions\input{q4b-sol.tex}\fi 
+
+\question[2] In this and the next question, you will prove the correctness of your greedy algorithm. To start, give a ``greedy stays ahead'' lemma that you can use to prove that your greedy algorithm is optimal. You do not need to prove the lemma (that comes next). Your lemma should compare a partial greedy solution to a partial optimal solution and describe some way in which the partial greedy solution is ``ahead.''
+
+\ifsolutions\input{q4c-sol.tex}\fi
+
+\question[4] Prove the correctness of your algorithm. That is, prove that your set of selected shifts will (a) overlap with all the shifts in $V$, and (b) contains as few shifts as possible. You should do this by proving the greedy stays ahead lemma you stated in the previous question and using it to prove that the greedy solution is optimal.
+
+\ifsolutions\input{q4d-sol.tex}\fi 
+
+\question[4] Briefly justify a good asymptotic bound on the runtime of your algorithm. If you prefer to present pseudo-code to help track the runtime incurred, you may do so.
+
+\ifsolutions\input{q4e-sol.tex}\fi 
+
+\end{questions}

@@ -1,0 +1,119 @@
+\documentclass[11pt,fleqn]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyvrb}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{algpseudocode}
+\usepackage{comment}
+\usepackage{enumitem}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows,arrows.meta,positioning,intersections,shapes.gates.logic.US,calc}
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+\newcommand{\fillinMCmath}[1]{\begin{tikzpicture}\draw circle [radius=0.5em];\end{tikzpicture}\ #1}
+\newcommand{\fillinMCmathsoln}[1]{\begin{tikzpicture}\draw[black, fill=blue] circle [radius=0.5em];\end{tikzpicture}\ #1}
+\newcommand{\ptsamt}[1]{[#1~points]}
+\newcommand{\ptamt}[1]{[#1~point]}
+
+%%% Adding Colour to Questions and Answers
+\usepackage{color}
+
+\definecolor{solnblue}{rgb}{0,0,1}
+\newenvironment{soln}{\color{solnblue}}{}
+
+%Questions
+
+% Answers
+\definecolor{blu}{rgb}{0,0,0.5}
+\def\blu#1{{\color{blu}#1}}
+\definecolor{gre}{rgb}{0,.3,0}
+\def\gre#1{{\color{gre}#1}}
+\definecolor{red}{rgb}{0.5,0.0,0}
+\def\red#1{{\color{red}#1}}
+\def\norm#1{\|#1\|}
+%%% End for Colours
+
+%fancyvrb commands
+\def\lar{$\leftarrow$}
+\def\lesseq{$\leq$}
+
+\bracketedpoints
+
+\makeatletter
+\renewenvironment{solution}{\leavevmode\par\begin{soln}\noindent Solution:}{\end{soln}}
+\makeatother
+      \newif\ifsolutions\solutionstrue
+
+\author{}
+\date{}
+\title{CPSC 320 2025S: Assignment 2}
+
+\begin{document}
+	
+	\maketitle
+	\vspace{-0.5in} This assignment is due \textbf{Friday, July 18 at 7 PM}. Late submissions will not be accepted. Please follow these guidelines:
+	\begin{itemize}
+		\item Prepare your  solution using \LaTeX \ and submit  a pdf file. Easiest will be to submit using
+		the .tex file provided. For questions where you  need to select a circle, you can simply
+		change \verb~\fillinMCmath~ to \verb~\fillinMCmathsoln~ .
+		
+		\item Enclose each paragraph of your solution with
+		\verb~\begin{soln}Your solution here...\end{soln}~.
+		\begin{soln}Your  solution will  then appear  in dark  blue\end{soln}, making  it a  lot
+		easier for TAs to find what you wrote.
+		
+		\item   Submit   the    assignment   via   \href{https://gradescope.ca/}{GradeScope}. Your group must make  a \textbf{single} submission via one
+		group member's account, marking all other group members in that submission \textbf{using
+			GradeScope's interface}.
+		
+		\item  After uploading  to  Gradescope, link  each  question  with the  page  of your  pdf
+		containing your solution.
+	\end{itemize}
+	
+	Before we  begin, a few  notes on pseudocode throughout  CPSC 320: Your  pseudocode should
+	communicate your algorithm  clearly, concisely, correctly, and  without irrelevant detail.
+	Reasonable use  of plain  English is  fine in  such pseudocode.  You should  envision your
+	audience as a capable CPSC 320 student unfamiliar with the problem you are solving. You may \textbf{neither} include what we consider to be irrelevant coding details \textbf{nor} assume that  we understand the particular  language you
+	chose. (So, for example,  do not write \texttt{\#include <iostream>} at  the start of your
+	pseudocode,   and    avoid   language-specific   notation   like    C/C++/Java's   ternary
+	(question-mark-colon) operator.)
+	
+	Remember also  to \textbf{justify/explain  your answers}. We  understand that  gauging how
+	much  justification to  provide can  be tricky.  Inevitably, judgment  is applied  by both
+	student and  grader as to how  much is enough, or  too much, and it's  frustrating for all
+	concerned  when judgments  don't align.  Justifications/explanations need  not be  long or
+	formal, but  should be  clear and  specific (referring  back to  lines of  pseudocode, for
+	example). Proofs should be a bit more formal.
+	
+	On the  plus side, if  you choose an  incorrect answer when  selecting an option  but your
+	reasoning shows partial  understanding, you might get more marks  than if no justification
+	is provided. And  the effort you expend  in writing down the  justification will hopefully
+	help you gain deeper  understanding and may well help you converge  to the right selection
+	:).
+	
+	\vspace{.1in}
+	
+	Ok, time to get started...
+	
+	\clearpage
+	
+	\section*{Group Members}
+	
+	Please list the CWLs of all group members here (even if you are submitting by yourself). We will deduct a mark if this is incorrect or missing.
+
+	\input{q1.tex}
+	\ifsolutions\else\newpage\fi
+	
+	\input{q2.tex}
+	\ifsolutions\else\newpage\fi
+	
+	\input{q3.tex}
+	\ifsolutions\else\newpage\fi
+
+        \input{q4.tex}
+	\ifsolutions\else\newpage\fi
+ 
+\end{document}

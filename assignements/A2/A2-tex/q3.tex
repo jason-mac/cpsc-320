@@ -1,0 +1,46 @@
+\section{Colour Me Confused}
+
+Given a graph $G = (V, E)$, we consider the problem of assigning a colour to each vertex in $G$ such that no two adjacent vertices share a colour. Recall that the \emph{degree} of a vertex $v\in V$ is the number of edges incident on $v$. Let $d$ be the \emph{maximum degree} in the graph. 
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm, auto]
+  % Nodes
+  \node[circle, draw] (1) {1};
+  \node[circle, draw, right=of 1] (2) {2};
+  \node[circle, draw, right=of 2] (3) {3};
+  \node[circle, draw, above right=of 2] (4) {4};
+
+  % Edges
+  \draw (1) -- (2) -- (3);
+  \draw (2) -- (4);
+  \draw (4) -- (3);
+\end{tikzpicture}
+\end{center}
+
+The maximum degree $d$ in the graph above is $3$. The graph has a 3-colouring (by using different colours for nodes 1, 2, and 3 and colouring node 4 the same as 1 or 2) and a 4-colouring (by using a different colour for every node), but does not have a 2-colouring.
+
+\begin{questions}
+
+\question[2] For any value of $d$, describe a graph with maximum degree $d$ that can be coloured with two colours.
+
+\ifsolutions\input{q3a-sol.tex}\fi 
+
+\question[2] Consider the following greedy algorithm to find a colouring for a graph:
+
+\begin{quote}
+    Order vertices arbitrarily. Colour the first vertex with colour 1. Then choose the next vertex $v$ and colour it with the lowest-numbered colour that has not been used on any previously-coloured vertices adjacent to $v$. If all previously-used colours appear on a vertex adjacent to $v$, introduce a new colour and number it, and assign the new colour to vertex $v$.
+\end{quote}
+
+Prove that this algorithm uses at most $d+1$ colours.
+
+\ifsolutions\input{q3b-sol.tex}\fi 
+
+\question[2] Give and briefly explain an example where this algorithm does not produce an optimal colouring (i.e., where it uses more colours than is necessary to colour the graph).
+
+\ifsolutions\input{q3c-sol.tex}\fi 
+
+\question[5] Now, assume that there is at least one vertex $v$ in $V$ with degree \textbf{less than} $d$.  Design a greedy algorithm that will colour vertices of $G$ with at most $d$ colours. You should proceed by first \textbf{ordering the vertices} in some way, and then assigning colours using the colouring strategy in question 4.2. You should explain why your algorithm uses no more than $d$ colours.
+
+\ifsolutions\input{q3d-sol.tex}\fi 
+
+\end{questions}
