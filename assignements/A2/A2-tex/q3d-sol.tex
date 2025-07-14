@@ -1,2 +1,38 @@
 \begin{soln}
+	Let \(G = (V, E)\) be graph such that it has maximum degree \(d\) and there exists \(v \in V\) so that \(\deg(v) < d\).
+
+	Then if by removing \(v\), the maximum degree of the graph does not decrease, order vertices \(v_1, v_2, \dots, v_{n-1}, v\).
+
+	If maximum degree decreases, then construct the ordering, \(v_1, v_2, \dots, v, \dots, v_{n-1}, v_n\).
+
+	Where each node behind \(v\) has degree less than \(d\) or is adjacent to \(v\) and each node after \(v\) has degree \(d\) and is not adjacent to \(v\).
+
+	Then run the algorithm on the such orderings. This will use at most \(d\) colours.
+
+	Proof: By removing \(v_n\) with \(\deg(v_n) < d\), either the maximum degree of the graph decreases or not.
+
+	If maximum degree of the graph decreases, the ordering \(v_1, v_2, \dots, v_{n-1}\) will use at most \(d\) colours.
+
+	Then when colouring \(v_n\), notice it has at most \(d - 1\) neighbours who are each uniquely coloured or not.
+
+	Either case, it has access to \(d\) colours and the algorithm will not need to introduce a new colour.
+
+	Thus, this ordering uses at most \(d\) colours. We then consider the other ordering.
+
+	If removing \(v\) does not decrease \(d\), this means each degree \(d\) node that remains is not adjacent to \(v\).
+
+	Then construct the ordering, \(v_1, v_2, \dots, v, \dots, v_{n-1}, v_n\).
+
+	Where each node behind \(v\) has degree less than \(d\) or is adjacent to \(v\) each node after \(v\) has degree \(d\) and is not adjacent to \(v\).
+
+	Now, by construction, the ordering behind \(v\), will have degree at most \(d - 1\) in the deleted \(v\) graph, thus at that point it will use at most \(d\) colours.
+
+	We know there must exist some node, \(v'\) behind \(v\) such that it was not adjacent to \(v\), otherwise the deleted \(v\) graph would have had its degree decrease.
+
+	Thus, for the first which node that is coloured that is not adjacent to \(v\), the algorithm will use its colour from those available \(d\) colours to colour \(v\).
+
+	Then when considering colouring the nodes after \(v\), we notice that by construction, none of those nodes are adjacent to \(v\).
+	And every adjacent node to \(v\) has already been coloured.
+
+
 \end{soln}
