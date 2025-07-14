@@ -1,0 +1,93 @@
+\begin{soln}
+	We first develop the following lemma: if \(f \in O(g), g \in O(h)\) then \(f \in O(h)\).
+
+	Suppose \(f \in O(g), g \in O(h)\). Then there exists \(c_1, c_2 \in \mathbb{R}^{+}, n_1, n_2 \in \mathbb{N}\)
+	so that
+	\[
+		f(n) \leq c_1 \cdot g(n) \text{ whenever } n \geq n_1 \text{ and } g(n) \leq c_2 \cdot h(n) \text{ whenever } n \geq n_2.
+	\]
+
+	Then we have that \(f(n) \leq c_1 c_2 \cdot h(n)\) whenever \(n \geq \max(n_1, n_2)\). So, \(f \in O(h)\).
+
+	Claim: The orderding is \((f_3, f_1, f_4, f_6, f_2, f_5)\).
+
+	It suffices to show for each neighbour pair \((f_i, f_j)\) in the order that \(f_i \in O(f_j)\) to get if \(g\) appears after \(f\) then \(f \in O(g)\) by the lemma.
+
+
+	\begin{enumerate}
+		\item \(f_3 \in O(f_1)\). We show that \(\lim_{n \to \infty} \frac{f_1(n)}{f_3(n)}\) diverges.
+
+		      So, \(\frac{f_1(n)}{f_3(n)} = \frac{n}{\sqrt{n} \log(n)} = \frac{\sqrt{n}}{\log(n)}\).
+
+		      Without loss of generaltity, assume the base is \(e\), then using real valued limits and L'Hopital's rules we get:
+		      \[
+			      \lim_{x \to \infty} \frac{\sqrt{x}}{log(x)}  =^{H} \lim_{x \to \infty} \frac{1}{2} \cdot \frac{1}{\sqrt{x}} \cdot \frac{1}{\left(\frac{1}{x}\right)} = \lim_{x \to \infty} \frac{\sqrt{x}}{2} = \infty.
+		      \]
+		      And thus, we get that \(f_3 \in O(f_1)\).
+
+		\item \(f_1 \in O(f_4)\). We make use of the fact that \(\log(n) \in O(n)\) and that \(\log(n)\) is strictly increasing.
+
+		      So then for some \(c \in \mathbb{R}^{+}\) and \(n_1 \in \mathbb{N}\), we have that \(\log(n) \leq cn\) whenever \(n \geq n_1\).
+
+		      Applying the log function to both sides, we get \(\log(\log(n)) \leq \log(c) + \log(n)\).
+
+		      Then we see that \(\log(c) + \log(n) \leq 2\log(n)\) whenever \(n \geq \lceil c \rceil\).
+
+		      Thus, we have that \(\log\log(n) \leq 2\log(n)\) whenever \(n \geq n_2\), where \(n_2 = \max(n_1, \lceil c \rceil)\).
+
+		      We know that \(n \geq 1\), and hence we multiply both sides to get \(n \log\log(n) \leq 2n\log(n)\).
+
+		      Rearranging we get, \(n \leq 2 \cdot \frac{n\log(n)}{\log\log(n)}\) whenever \(n \geq n_2\), thus \(f_1 \in O(f_4)\).
+
+		\item \(f_4 \in O(f_6)\). We assume that the base is \(b > 1\).
+
+		      First, observe \(\log(n) > b\) whenever \(n \geq \lceil b^b \rceil + 1\). And so, \(\log\log(n) > 1\) and thus \(\frac{1}{\log\log(n)} < 1\).
+
+		      Then we get that \(\frac{n\log(n)}{\log\log(n)} \leq n\log(n)\). And so, it suffices to show \(n\log(n) \in O(n^{\lg(n)})\).
+
+		      Since the base does not matter, is also suffices to show that \(\lg(n) \in O(n^{\lg(n) - 1})\).
+
+		      We will use a limit argument to show that it is the case. So then using real valued limits and L'Hopital's we get
+		      \[
+			      \lim_{x \to \infty} \frac{x^{\lg(x) - 1}}{\lg(x)} =^{H} \frac{1}{\ln(2)}\lim_{x \to \infty}x^{(\lg(x) - 2)}(2\ln(x) - \ln(2))\frac{1}{\left(\frac{1}{x\ln(2)}\right)} = \lim_{x \to \infty} x^{\lg(x) - 1}(2\ln(x) - \ln(2)) = \infty.
+		      \]
+
+		      Then \(\lg(n) \in O(n^{\lg(n) - 1})\). More formally, we can then write:
+		      \[
+			      \exists c_1 > 0, \exists n_1 \in \mathbb{N}, \forall n \geq n_1, \lg(n) \leq c_1 \cdot n^{\lg(n) - 1}.
+		      \]
+
+		      Then if we set \(c_2 = c_1 \cdot \lg(b)\), we have
+		      \[
+			      \forall n \geq n_1, \log(n) \leq c_2 \cdot n^{\lg(n) - 1} \implies n\log(n) \leq c_2 \cdot n^{\lg(n)}.
+		      \]
+
+		      Now, if \(n_2 = \max(\lceil b^b \rceil + 1, n_1)\), we can write
+		      \[
+			      \forall n \geq n_2, \frac{n\log(n)}{\log(\log(n))} \leq c_2 \cdot n^{\lg(n)}.
+		      \]
+		      Hence, \(f_4 \in O(f_6)\).
+
+		\item \(f_6 \in O(f_2)\). \(f_6 = n^{\lg(2)} = 2^{\lg(n^{\lg(2)})} = 2^{\lg^2(n)}\). \(f_2 = 2^n\).
+
+		      It suffices to show \(\lg^2(n)\) is bounded by \(n\) since the exponential with base \(2\) is an increasing function.
+
+		      We will again use a limit argument, so again we tak real valued limits,
+		      \[
+			      \lim_{x \to \infty} \frac{x}{\lg^2(x)} =^{H} \frac{2}{\ln(2)}\lim_{x \to \infty}\frac{x}{\lg(x)} =^{H} \frac{2}{\ln^2(2)}\lim_{x \to \infty } x = \infty.
+		      \]
+
+		      Thus, \(f_6 \in O(f_2)\).
+
+
+
+		\item \(f_2 \in O(f_6)\). To show \(2^n\) is bounded by \((n - 2)!\), we show \(2^n \leq (n-2)!\) for \(n \geq 8\) using induction.
+
+		      Base case: \(n = 8\): \(2^n = 2^8 = 256 \leq 720 = 6! = (8 - 2)! = (n - 2)!\). Assume true for \(k \in \mathbb{N}\) with \(k \geq 8\).
+
+		      Notice, \(k - 1 \geq 7 > 2\). Now, \(2^{k+1} =  2 \cdot 2^k \leq 2 \cdot (k - 2)! < 7 \cdot (k - 2)! \leq (k - 1)(k - 2)! = (k - 1)!\).
+
+		      Hence, induction makes it true for \(n \geq 8\). Thus, \(2^n \in O((n - 2)!)\).
+	\end{enumerate}
+
+\end{soln}

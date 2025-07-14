@@ -1,0 +1,31 @@
+\begin{soln}
+	Let \(P = (v_1, v_2, \dots, v_n)\) be a permutation on \(V\).
+
+	We will assume that we have an adjency matrix to represent the edges in the graph \(M\).
+
+	\begin{algorithmic}[1]
+		\Procedure {Valid-Ranking}{P, M}
+		\For{each $i = 1, 2, \dots, n - 1$}
+		\State store the sum from $j = i$ to $j = n$ of $M(j)$ as $d_i$
+		\For{each $j = i + 1, \dots, n - 1$}
+		\State store the sum from $k = j$ to $k = n$ of $M(k)$ as $d_k$
+		\If{$d_i < d_k$}
+		\State end the procedure, report it is not valid
+		\EndIf
+		\EndFor
+		\EndFor
+		\State report the permutation as valid
+		\EndProcedure
+	\end{algorithmic}
+	This algorithm is \(O(n^3)\), where \(n = |P|\). In the worse case, we have a valid permutation, and the algorithm does work as follows.
+
+	We have to iterate through the permutation list \(n - 1\) times. Access to the elements will be \(O(1)\) as we assume we are given an array.
+
+	Then for each iteration, we are iterating through the entire adjency matrix, except each iteration we are considering one less node.
+
+	Access to the adjency matrix is \(O(1)\) thus the iteration of the adjency matrix is \(O(i^2)\).
+
+	Then, for each \(i\), the work we are doing is \(i^2\). Thus, summing \(i = 1, 2, \dots, n - 1\) gives us \(O(n^3)\).
+
+
+\end{soln}

@@ -1,0 +1,41 @@
+\begin{soln}
+	Suppose we are given a tournament graph \(T = (V, E)\) with a vertex ordering \(v_1, v_2, \dots, v_n\) such that for all \(i < j\), the directed edge \((v_i, v_j)\) is in \(E\). That is, every vertex points to all vertices that come after it in the order.
+
+	\textbf{Claim 1:} \(T\) is a tournament.
+
+	For every distinct pair \(v_i, v_j\), either \(i < j\) or \(j < i\), so exactly one of \((v_i, v_j)\) or \((v_j, v_i)\) exists in \(E\), but not both. This satisfies the definition of a tournament: for every pair of distinct vertices, there is exactly one directed edge between them.
+
+	\textbf{Claim 2:} The ordering \(v_1, v_2, \dots, v_n\) is a valid ranking.
+
+	Let \(d_i\) be the out-degree of \(v_i\) in the subtournament induced by \(\{v_i, v_{i+1}, \dots, v_n\}\). Since \(v_i\) points to all vertices that follow it, it has out-degree \(d_i = n - i\). For \(i < j\), \(d_i = n - i > n - j = d_j\), so each player has strictly higher out-degree than those who come after them. Thus, the ordering satisfies the requirement of a valid ranking.
+
+	\textbf{Claim 3:} The valid ranking is unique.
+
+	Suppose for contradiction there is another valid ranking \(P' = v_{\pi(1)}, v_{\pi(2)}, \dots, v_{\pi(n)}\) with \(\pi\) a permutation of \(\{1, \dots, n\}\), and \(P' \ne P\). Then there exist indices \(i < j\) such that \(\pi(i) > \pi(j)\); that is, \(v_{\pi(i)}\) appears before \(v_{\pi(j)}\) in \(P'\), but comes later in the original ordering.
+
+	But then in the subtournament starting at \(v_{\pi(i)}\), the vertex \(v_{\pi(i)}\) must have lower out-degree than \(v_{\pi(j)}\), contradicting the assumption that \(P'\) is a valid ranking. So the valid ranking must be unique.
+
+	Suppose we have a tournament graph \(T = (V, E)\) such that there is an ordering, \(v_1, v_2, \dots, v_n\) so that there is an edge \((v_i, v_j)\) iff \(i < j\).
+
+	This would create one valid ranking, and this ordering is exactly that ranking.
+
+	Before we prove that statement, we will show it is a tournament in the first place, and that is is valid ranking.
+
+	First, we require that every player has played someone else and only once or in other words, either \((v_i, v_j) \in E\) or \((v_j, v_i) \in E\) but not both.
+
+	Let \(v_i, v_j \in V\) such that \(i \neq j\). Then either \(i < j\) or \(j < i\). Then we can only have one of the edge pairs in \(E\) by assumption.
+
+	Next, we require that \(v_i\) has maximum out-degree in its subtournaments.
+
+	Observe that for any \(v_i\) in a subtournament it's out degree is \(d_i = n - i + 1\), independent of the sub tournament.
+
+	Then for any \(i < j\), we see that \(n - j + 1 < n - i + 1\), but this precisely means that \(d_j < d_i\), thus it is valid ranking.
+
+	Proof: For contradiction, suppose that there were two valid rankings.
+
+	Then it must be some permutation on \(P:= v_1, v_2, \dots, v_n\).
+
+	Then there exists some \(i < j\) in \(P\) such that \(j < i\) in \(P'\). But this means that \(d_j < d_i\) in the subtournament for \(j\) in \(P'\).
+
+	This contradicts that \(P'\) was a valid ranking.
+\end{soln}

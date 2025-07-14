@@ -1,0 +1,16 @@
+\begin{soln}
+	Let \(V\) be a vertex set. Add \(v \in V\). Then also add \(v_1, v_2, \dots, v_n\) to \(V\).
+
+	Then for \(v_1, v_2, \dots, v_d\) add \((v, v_i) \in E\) for \(i = 1, 2, \dots, d\).
+
+	Then colour the node \(v\) blue, and colour all other nodes in \(V\) red.
+
+	By construction, the degree of all other nodes that are not \(v\) is \(1\) since it's only connected to \(v\).
+
+	Thus, the degree of \(v\) is the maxmimum degree of the graph, which is \(d\).
+
+	Since no nodes are adjacent except for ones to \(v\). Then the colour red is never shared by adjacent vertices.
+
+	Thus, this graph with maximum degree \(d\) can be coloured with two colours.
+
+\end{soln}

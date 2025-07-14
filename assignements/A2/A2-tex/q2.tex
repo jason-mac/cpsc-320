@@ -1,32 +1,32 @@
 \section{All-Stars}
 
 Suppose you're organizing a tennis tournament between $n$ players which we simply label as $1,2, \ldots ,n$. Each player competes against every other player, and there are no repeat matches and no tied scores. We model the results of the competition as a directed graph with $n$ vertices and exactly one directed edge between each pair of vertices: $G=(V,E)$, with $V =\{1,2, \ldots ,n\}$ where either $(i,j)) \in E$ (if $i$ defeated $j$), or $(j,i)) \in E$ (if $j$ defeated $i$). Such a graph is called a \emph{tournament}.
-		
-You want to determine a way to rank these players, but a challenge here is that cycles \textbf{may} exist in your tournament -- e.g., $i$ may defeat $j$ in a match, and $j$ could defeat $k$, but then we could still have $k$ win a match against $i$; this  would lead to a cycle of length three. 
+
+You want to determine a way to rank these players, but a challenge here is that cycles \textbf{may} exist in your tournament -- e.g., $i$ may defeat $j$ in a match, and $j$ could defeat $k$, but then we could still have $k$ win a match against $i$; this  would lead to a cycle of length three.
 
 A ranking for the tournament is an ordering $(r_1,r_2, \ldots ,r_n)$ where node $r_1$ is established as the overall rank 1 player. Due to the potential existence of cycles it is challenging to find a fair ranking.
 
 
- \begin{questions}
-    \question[4]  We decide that the top ranked player should 
- always be some node whose out-degree in the directed graph is maximum. We motivate this claim by proving that if player $i$ has maximum degree, then for every other player $j$ either $i$ beat $j$, or $i$ beat some player $k$ which beat $j$. Prove this claim. 
- 
- {\em Hint: A proof by induction on $n$ works well.}
+\begin{questions}
+	\question[4]  We decide that the top ranked player should
+	always be some node whose out-degree in the directed graph is maximum. We motivate this claim by proving that if player $i$ has maximum degree, then for every other player $j$ either $i$ beat $j$, or $i$ beat some player $k$ which beat $j$. Prove this claim.
 
-    \ifsolutions\input{q2a-sol.tex}\fi
- 
-     \question[2] We decide that a reasonable definition  is suggested by the previous result. A sequence of nodes $(r_1,r_2, \ldots ,r_n)$ is a \emph{valid ranking} if for each $i=1,2, \ldots ,n$ the node $r_i$ has maximum out-degree in the sub-tournament induced by the nodes $r_i,r_{i+1}, \ldots ,r_n$. Give a polynomial-time algorithm which decides if a given permutation of the nodes $(v_1,v_2, \ldots ,v_n)$ is a valid ranking.
+		{\em Hint: A proof by induction on $n$ works well.}
 
-     \ifsolutions\input{q2b-sol.tex}\fi 
+	\ifsolutions\input{q2a-sol.tex}\fi
 
-      \question[2] Describe a tournament of size $n$ which has precisely one valid ranking.
+	\question[2] We decide that a reasonable definition  is suggested by the previous result. A sequence of nodes $(r_1,r_2, \ldots ,r_n)$ is a \emph{valid ranking} if for each $i=1,2, \ldots ,n$ the node $r_i$ has maximum out-degree in the sub-tournament induced by the nodes $r_i,r_{i+1}, \ldots ,r_n$. Give a polynomial-time algorithm which decides if a given permutation of the nodes $(v_1,v_2, \ldots ,v_n)$ is a valid ranking.
 
-     \ifsolutions\input{q2c-sol.tex}\fi 
-      
-     \question[4] One brute force method for  
-      producing all valid rankings is to consider all permutations of the nodes and then use your algorithm for Part b to check each one if it is a valid ranking. This will run in time $O(n! p(n))$ where $p(n)$ is the runtime of your algorithm in Part b.
+	\ifsolutions\input{q2b-sol.tex}\fi
 
-      Instead, create a better algorithm which runs in time $O(|Val| poly(n))$ where $Val$ is the set of valid rankings, and $poly(n)$ is a polynomial in $n$. (You do not need to analyze the runtime of your algorithm.)
- 
-     \ifsolutions\input{q2d-sol.tex}\fi
- \end{questions}
+	\question[2] Describe a tournament of size $n$ which has precisely one valid ranking.
+
+	\ifsolutions\input{q2c-sol.tex}\fi
+
+	\question[4] One brute force method for
+	producing all valid rankings is to consider all permutations of the nodes and then use your algorithm for Part b to check each one if it is a valid ranking. This will run in time $O(n! p(n))$ where $p(n)$ is the runtime of your algorithm in Part b.
+
+	Instead, create a better algorithm which runs in time $O(|Val| poly(n))$ where $Val$ is the set of valid rankings, and $poly(n)$ is a polynomial in $n$. (You do not need to analyze the runtime of your algorithm.)
+
+	\ifsolutions\input{q2d-sol.tex}\fi
+\end{questions}

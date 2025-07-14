@@ -1,0 +1,47 @@
+\begin{soln}
+	Let \(G = (V, E)\) be a graph such that it is a tournament. Let \(i \in V\) be the node such that it has maximum out-degree.
+
+	We aim to prove that \(\forall j \neq i \in V\) either \(i\) beat \(j\) or \(i\) beat \(k \in V\) who beat \(j\) for any size \(|V| = n \in \mathbb{N}\).
+
+	Base case: \(|V| = 2\). Then if \(i\) has max out-degree then \(E = \{(i, j)\}\). Thus, the claim holds.
+
+	Assume the claim holds for \(|V| = n\), with \(n \in \mathbb{N}\).
+
+	Consider a tournament with \(|V| = n + 1\) nodes. Denote the player who has maximum out-degree by \(i\).
+
+	Then remove \(j \neq i\) from this graph, so that we have \(n\) nodes, denote \(V' = V\setminus \{j\}\), with \(i\) beat \(j\).
+
+	Either \(i\) has the maximum out-degree in this graph or not. We consider each case.
+
+	\begin{itemize}
+		\item \text{Case \(i\) has maximum out-degree in \(V'\)}. Then, by assumption for each node other node \(j' \in V'\), either \(i\) beat \(j'\) or \(i\) beat \(k'\) who beat \(j'\).
+		      Since \(|V'| = n\).
+
+		      By adding back in \(j\), then the statement holds for \(|V| = n + 1\), since \(i\) beat \(j\) by assumption.
+
+		\item \text{Case \(i\) does not have maximum out-degree in \(V'\)}.
+
+		      So, by removing \(j\), every other node decreased their out-degree by at most one.
+
+		      By assumption \(i\) beat \(j\), so its out-degree must have decreased by one in \(V'\).
+
+		      Thus, there was some node \(k \in V\) such that \(k\) had the same out-degree as \(i\), but \(k\) did beat \(j\).
+
+		      Thus, \(j\) beat \(k\). By assumption for each other \(j' \in V'\), either \(k\) beat \(j'\) or \(k\) beat \(k'\) who beat \(j'\).
+
+		      We now add back \(j\) to the graph. It remains that we need a connection to \(j\), as \(k\) did not beat \(j\).
+
+		      Indeed if \(k\) beats \(i\) who beat \(j\), then assumption holds for \(|V| = n + 1\), using \(k\) in the hypothesis.
+
+		      However, if \(k\) did not beat \(i\) then we consider removing \(i\) from this graph.
+
+		      Since \(k\) lost to \(i\), then the out-degree of \(k\) cannot decrease. So \(k\) must have the max out-degree.
+
+		      This graph being size \(n\), means there is some \(v \in V \setminus \{i\}\) so that \(k\) beats \(v\) and \(v\) beats \(j\).
+
+		      Returning \(i\) to the graph, the statement holds for \(|V| = n + 1\), again using \(k\) in the hypothesis.
+	\end{itemize}
+
+	By induction, the statement holds for any tournament with \(|V| = n \in \mathbb{N}\).
+
+\end{soln}

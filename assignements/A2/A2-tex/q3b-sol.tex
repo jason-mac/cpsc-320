@@ -1,0 +1,31 @@
+\begin{soln}
+	Proof: We provide a proof by induction on the number of nodes, \(n \in \mathbb{N}\), for graph \(G = (V, E)\).
+
+	Base case \(|V| = 1\). The highest degree can be \(d = 0\), since the edge set would be empty.
+
+	Thus, the algorithm uses \(1 = d + 1\) colours to colour the single node and the base case holds.
+
+	Assume for any graph with \(n\) nodes that the algorithm will colour any ordering of nodes using at most \(d + 1\) colours.
+
+	Consider a graph \(G = (V, E)\) with \(|V| = n + 1\) nodes with the highest degree of any node is \(d\).
+
+	Let \(v_1, v_2, \dots, v_n, v_{n+1}\) be any ordering of the nodes. Remove \(v_{n+1}\) from this order, and the graph.
+
+	Denote the deleted graph without \(v_{n+1}\) by \(G'\). Notice the degree of any node in \(G'\) can only decrease.
+
+	Thus, the maximum degree of \(G'\) remains to be \(d\) with the removal of \(v_{n+1}\).
+
+	By assumption, we can colour the ordering \(v_1, v_2, \dots, v_n\) using at most \(d+1\) colours.
+
+	Since \(v_{n+1}\) has degree at most \(d\) then it has at most \(d\) neighbours. Then we add back \(v_{n+1}\).
+
+	The number of colours used to colour its neigbours can be at most \(d\), if each are coloured distinctly.
+
+	Thus, there remains at least \(1\) unique colour to colour \(v_{n+1}\) so that it is a valid colouring.
+
+	In other words, the algorithm uses at most \(d + 1\) colours to colour the ordering \(v_1, v_2, \dots, v_{n+1}\).
+
+	Induction makes the claim holds true for any graph with \(n\) nodes and maximum degree \(d\).
+
+
+\end{soln}

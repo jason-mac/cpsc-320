@@ -1,0 +1,19 @@
+\begin{soln}
+	We consider the graph \(G = (V, E)\) with \(V = \{1, 2, 3, 4\}\) and \(E = \{(1, 4), (4, 3), (3, 2)\}\).
+
+	This graph can be coloured with three colours. Namely we can assign \(A = \{1, 3\}\) \(B = \{2, 4\}\).
+
+	We see that no edges are shared between any vertices in \(A, B\) so this is a valid colouring.
+
+	Now consider the ordering \(1, 2, 3, 4\). We first colour \(1\) blue. And then we consider \(2\).
+
+	There is no edge between \(1, 2\) so we colour \(2\) blue and consider \(3\).
+
+	So, its adjacent vertices have been coloured with blue, then we introduce a new colour for it red.
+
+	Now we finally consider \(4\), its neighbours have been coloured with both red and green, so we must introduce a new colour for it purple.
+
+	We have thus coloured this graph using three colours through the greedy algorithm when we could have used two.
+
+
+\end{soln}

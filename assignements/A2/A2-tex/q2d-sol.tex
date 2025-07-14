@@ -1,0 +1,16 @@
+\begin{soln}
+	Find the set \(S_0\) such that each node in \(S_0\) has equal out-degree and is the greatest amongst all \(V\).
+
+	Find the set \(S_1\) such that each node in \(S_1\) has equal out-degree and is the greatest amongst all \(V \setminus S_0\).
+
+	Find set \(S_k\) so that each node in \(S_k\) has equal out-degree and is the greatest amongst all \(V \setminus \bigcup_{i=0}^{k-1}S_i\).
+
+	Continue until you have a collection, such that \(\bigcup_{i = 0}^{k} S_i = V\).
+
+	Then create a set of permutation, \(P_0, P_1, \dots, P_k\) such that \(P_i\) contains all possible permuations of ordered tuplets on vertices in \(S_i\).
+
+	Next, create another set containing all ordered tuples of \(r = (p_1, p_2, \dots, p_k)\) where each \(p_i \in P_i\).
+
+	Return \(R = \{\text{all possible } r\}\) as the set all possible valid rankings.
+
+\end{soln}
