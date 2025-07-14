@@ -1,17 +1,18 @@
 \begin{soln}
 	Let \(G = (V, E)\) be graph such that it has maximum degree \(d\) and there exists \(v \in V\) so that \(\deg(v) < d\).
 
-	Then if by removing \(v\), the maximum degree of the graph does not decrease, order vertices \(v_1, v_2, \dots, v_{n-1}, v\).
+	Then if by removing \(v\), the maximum degree of the graph does decrease, order vertices \(v_1, v_2, \dots, v_{n-1}, v\).
 
-	If maximum degree decreases, then construct the ordering, \(v_1, v_2, \dots, v, \dots, v_{n-1}, v_n\).
+	If maximum degree does not decrease, then we construct the specific ordering.
 
-	Where each node behind \(v\) has degree less than \(d\) or is adjacent to \(v\) and each node after \(v\) has degree \(d\) and is not adjacent to \(v\).
+	Place \(v\) at the end of the ordering then we consider subgraphs, \(G_1, G_2, \dots, G_k\).
 
-	Then run the algorithm on the such orderings. This will use at most \(d\) colours.
+	There exists an ordering of the degree \(d\) nodes such that when placed into the graph, its neighbours will have already been coloured.
+	If prove this, its done. but how the fuck do i do this?
 
 	Proof: By removing \(v_n\) with \(\deg(v_n) < d\), either the maximum degree of the graph decreases or not.
 
-	If maximum degree of the graph decreases, the ordering \(v_1, v_2, \dots, v_{n-1}\) will use at most \(d\) colours.
+	If max degree of the graph decreases to at most \(d - 1\), ordering \(v_1, v_2, \dots, v_{n-1}\) uses at most \(d\) colours.
 
 	Then when colouring \(v_n\), notice it has at most \(d - 1\) neighbours who are each uniquely coloured or not.
 

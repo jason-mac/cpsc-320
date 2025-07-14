@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1752506155.74027 "a2.tex" "a2.pdf" "a2" 1752506157.26029 0
+["pdflatex"] 1752511240.31591 "a2.tex" "a2.pdf" "a2" 1752511241.71365 0
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -195,8 +195,8 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1728622656.90807 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1728622562 8221449 e1cc3a73d4d08f8f8c1a6176c2a142d0 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "a2.aux" 1752506157.09096 3021 9ec2b4780b5b78844fc4ade6fd306b87 "pdflatex"
-  "a2.out" 1752506157.09493 520 c60e184f60954c4c3c92ef8c7cd36448 "pdflatex"
+  "a2.aux" 1752511241.5893 3021 edf40e0d1942f0afe7780f6c94e5beb2 "pdflatex"
+  "a2.out" 1752511241.58979 520 c60e184f60954c4c3c92ef8c7cd36448 "pdflatex"
   "a2.tex" 1752498657.71023 4639 44ef07ea812b14d1a713dac649ced087 ""
   "q1-sol.tex" 1752498383.57892 4683 d089c4cd7169e9aacc8b7e66276c5b9f ""
   "q1.tex" 1752498383.57904 556 b0c85a764a27899491ca62159eac6e95 ""
@@ -208,8 +208,8 @@
   "q3.tex" 1752498383.57982 2362 5f6d4bd354221ca931550cb63b661047 ""
   "q3a-sol.tex" 1752498383.57993 669 b643d81bfd4fb0236091b604f3248910 ""
   "q3b-sol.tex" 1752498383.58005 1535 fa095c87f43210ed5c829b06a947c443 ""
-  "q3c-sol.tex" 1752498383.58016 869 1b67a4d332178914ddb5999e2cf528e4 ""
-  "q3d-sol.tex" 1752506153.73987 2192 de2de8f88b10e6be60c888eba25e7039 ""
+  "q3c-sol.tex" 1752511237.63765 1216 e3cf567516244b968d673df94eb680f6 ""
+  "q3d-sol.tex" 1752510697.14979 2225 90c96ab5b252efa38fea8544458e33cb ""
   "q4.tex" 1752498383.58039 3621 5dac89fcbe121fe452c199fe0014c3f9 ""
   "q4a-sol.tex" 1752498383.58042 0 d41d8cd98f00b204e9800998ecf8427e ""
   "q4b-sol.tex" 1752498383.5805 0 d41d8cd98f00b204e9800998ecf8427e ""
