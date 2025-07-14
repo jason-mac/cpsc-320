@@ -1,20 +1,6 @@
 \begin{soln}
 	Suppose we are given a tournament graph \(T = (V, E)\) with a vertex ordering \(v_1, v_2, \dots, v_n\) such that for all \(i < j\), the directed edge \((v_i, v_j)\) is in \(E\). That is, every vertex points to all vertices that come after it in the order.
 
-	\textbf{Claim 1:} \(T\) is a tournament.
-
-	For every distinct pair \(v_i, v_j\), either \(i < j\) or \(j < i\), so exactly one of \((v_i, v_j)\) or \((v_j, v_i)\) exists in \(E\), but not both. This satisfies the definition of a tournament: for every pair of distinct vertices, there is exactly one directed edge between them.
-
-	\textbf{Claim 2:} The ordering \(v_1, v_2, \dots, v_n\) is a valid ranking.
-
-	Let \(d_i\) be the out-degree of \(v_i\) in the subtournament induced by \(\{v_i, v_{i+1}, \dots, v_n\}\). Since \(v_i\) points to all vertices that follow it, it has out-degree \(d_i = n - i\). For \(i < j\), \(d_i = n - i > n - j = d_j\), so each player has strictly higher out-degree than those who come after them. Thus, the ordering satisfies the requirement of a valid ranking.
-
-	\textbf{Claim 3:} The valid ranking is unique.
-
-	Suppose for contradiction there is another valid ranking \(P' = v_{\pi(1)}, v_{\pi(2)}, \dots, v_{\pi(n)}\) with \(\pi\) a permutation of \(\{1, \dots, n\}\), and \(P' \ne P\). Then there exist indices \(i < j\) such that \(\pi(i) > \pi(j)\); that is, \(v_{\pi(i)}\) appears before \(v_{\pi(j)}\) in \(P'\), but comes later in the original ordering.
-
-	But then in the subtournament starting at \(v_{\pi(i)}\), the vertex \(v_{\pi(i)}\) must have lower out-degree than \(v_{\pi(j)}\), contradicting the assumption that \(P'\) is a valid ranking. So the valid ranking must be unique.
-
 	Suppose we have a tournament graph \(T = (V, E)\) such that there is an ordering, \(v_1, v_2, \dots, v_n\) so that there is an edge \((v_i, v_j)\) iff \(i < j\).
 
 	This would create one valid ranking, and this ordering is exactly that ranking.

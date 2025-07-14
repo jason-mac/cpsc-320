@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.10)  13 JUL 2025 22:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.10)  13 JUL 2025 22:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -712,7 +712,7 @@ File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./q1.tex (./q1-sol.tex [2
 
-])) (./q2.tex [3] (./q2a-sol.tex) (./q2b-sol.tex [4]) (./q2c-sol.tex [5]) (./q2d-sol.tex)) (./q3.tex (./q3a-sol.tex) [6] (./q3b-sol.tex) (./q3c-sol.tex) (./q3d-sol.tex)) (./q4.tex [7] (./q4a-sol.tex) (./q4b-sol.tex) (./q4c-sol.tex) (./q4d-sol.tex) (./q4e-sol.tex)) [8]
+])) (./q2.tex [3] (./q2a-sol.tex) (./q2b-sol.tex [4]) (./q2c-sol.tex) (./q2d-sol.tex [5])) (./q3.tex (./q3a-sol.tex) (./q3b-sol.tex [6]) (./q3c-sol.tex) (./q3d-sol.tex)) (./q4.tex [7] (./q4a-sol.tex) (./q4b-sol.tex) (./q4c-sol.tex) (./q4d-sol.tex) (./q4e-sol.tex)) [8]
 This exam contains 13 questions with 0 parts, 0 subparts, and 0 subsubparts.
 (./a2.aux)
  ***********
@@ -735,7 +735,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  102i,11n,107p,831b,644s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfcc1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on a2.pdf (8 pages, 290373 bytes).
+Output written on a2.pdf (8 pages, 287783 bytes).
 PDF statistics:
  185 PDF objects out of 1000 (max. 8388607)
  136 compressed objects within 2 object streams
