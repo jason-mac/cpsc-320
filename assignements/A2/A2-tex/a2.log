@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.10)  14 JUL 2025 17:56
+=======
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.10)  15 JUL 2025 22:17
+>>>>>>> 5b9092d6e7cb38b7c466bee64cca242b161b3d58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -712,7 +716,11 @@ File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./q1.tex (./q1-sol.tex [2
 
+<<<<<<< HEAD
 ])) (./q2.tex [3] (./q2a-sol.tex) (./q2b-sol.tex [4]) (./q2c-sol.tex) (./q2d-sol.tex [5])) (./q3.tex (./q3a-sol.tex) (./q3b-sol.tex [6]) (./q3c-sol.tex) (./q3d-sol.tex [7])) (./q4.tex (./q4a-sol.tex [8]) (./q4b-sol.tex) (./q4c-sol.tex) (./q4d-sol.tex) (./q4e-sol.tex)) [9]
+=======
+])) (./q2.tex [3] (./q2a-sol.tex) (./q2b-sol.tex [4]) (./q2c-sol.tex) (./q2d-sol.tex [5])) (./q3.tex (./q3a-sol.tex) (./q3b-sol.tex [6]) (./q3c-sol.tex) (./q3d-sol.tex [7])) (./q4.tex [8] (./q4a-sol.tex) (./q4b-sol.tex) (./q4c-sol.tex) (./q4d-sol.tex) (./q4e-sol.tex)) [9]
+>>>>>>> 5b9092d6e7cb38b7c466bee64cca242b161b3d58
 This exam contains 13 questions with 0 parts, 0 subparts, and 0 subsubparts.
 (./a2.aux)
  ***********
@@ -727,15 +735,26 @@ Package rerunfilecheck Info: File `a2.out' has not changed.
 (rerunfilecheck)             Checksum: C60E184F60954C4C3C92EF8C7CD36448;520.
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  25194 strings out of 474116
  470611 string characters out of 5743681
  1945187 words of memory out of 5000000
  47063 multiletter control sequences out of 15000+600000
+=======
+ 25170 strings out of 474116
+ 470174 string characters out of 5743681
+ 1945187 words of memory out of 5000000
+ 47039 multiletter control sequences out of 15000+600000
+>>>>>>> 5b9092d6e7cb38b7c466bee64cca242b161b3d58
  573204 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,11n,107p,831b,807s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfcc1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
+<<<<<<< HEAD
 Output written on a2.pdf (9 pages, 293691 bytes).
+=======
+Output written on a2.pdf (9 pages, 295652 bytes).
+>>>>>>> 5b9092d6e7cb38b7c466bee64cca242b161b3d58
 PDF statistics:
  189 PDF objects out of 1000 (max. 8388607)
  139 compressed objects within 2 object streams
