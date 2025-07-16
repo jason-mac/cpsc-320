@@ -1,39 +1,67 @@
 \begin{soln}
 	Let \(G = (V, E)\) be graph such that it has maximum degree \(d\) and there exists \(v \in V\) so that \(\deg(v) < d\).
 
-	Then if by removing \(v\), the maximum degree of the graph does decrease, order vertices \(v_1, v_2, \dots, v_{n-1}, v\).
+	We make a claim that if such a graph is connected, then there must exist some node that is connected to a degree \(d\) node such that it has degree less than \(d\).
 
-	If maximum degree does not decrease, then we construct the specific ordering.
+	If we assume that every node connected to a degree \(d\) node has degree greater than or equal to \(d\) then every node connected to it has degree \(d\) since we assumed maximum degree of \(d\).
+	But then we cannot have the node with degree less than \(d\) be connected to any of the degree \(d\) nodes, otherwise it would then have degree \(d\), thus this graph must be disconnected.
+	The contrapositive gives us the first claim.
 
-	Place \(v\) at the end of the ordering then we consider subgraphs, \(G_1, G_2, \dots, G_k\).
+	First observe if node \(v\) with \(\deg(v) < d\) connected to the degree \(d\) node is removed from the graph, then its neighbours must have their degree decrease in the deleted graph.
+	Including the degree \(d\) node.
 
-	There exists an ordering of the degree \(d\) nodes such that when placed into the graph, its neighbours will have already been coloured.
-	If prove this, its done. but how the fuck do i do this?
+	Thus, we have guaranteed there will always be a node with degree less than \(d\) since we can decrease the degree of the degree \(d\) node,
+	given the existence claim of a node connecting to it. If no such node exists then this implies that the maximum degree of the deleted graph is no longer maximum degree \(d\).
 
-	Proof: By removing \(v_n\) with \(\deg(v_n) < d\), either the maximum degree of the graph decreases or not.
+	In other words, continuous deletion of the node with degree less than \(d\) creates another sub-graph with the existence of such a node.
 
-	If max degree of the graph decreases to at most \(d - 1\), ordering \(v_1, v_2, \dots, v_{n-1}\) uses at most \(d\) colours.
+	We then construct the following ordering, \(O\):
 
-	Then when colouring \(v_n\), notice it has at most \(d - 1\) neighbours who are each uniquely coloured or not.
+	\begin{algorithmic}[1]
+		\Procedure {Create Ordering}{$G = (V, E)$}
 
-	Either case, it has access to \(d\) colours and the algorithm will not need to introduce a new colour.
+		\State Set \(O\) to empty ordering.
 
-	Thus, this ordering uses at most \(d\) colours. We then consider the other ordering.
+		\While {$V$ is not empty}
 
-	If removing \(v\) does not decrease \(d\), this means each degree \(d\) node that remains is not adjacent to \(v\).
+		\If {there exists a degree \(d\) node in \(G\)}
 
-	Then construct the ordering, \(v_1, v_2, \dots, v, \dots, v_{n-1}, v_n\).
+		\State Find $v \in V$ such that $\deg(v) < d$ and it is connected to a degree \(d\)
 
-	Where each node behind \(v\) has degree less than \(d\) or is adjacent to \(v\) each node after \(v\) has degree \(d\) and is not adjacent to \(v\).
+		\ElsIf {there is no such degree \(d\) node in \(G\)}
 
-	Now, by construction, the ordering behind \(v\), will have degree at most \(d - 1\) in the deleted \(v\) graph, thus at that point it will use at most \(d\) colours.
+		\State Find $v \in V$ such that $\deg(v) < d$
 
-	We know there must exist some node, \(v'\) behind \(v\) such that it was not adjacent to \(v\), otherwise the deleted \(v\) graph would have had its degree decrease.
+		\EndIf
 
-	Thus, for the first which node that is coloured that is not adjacent to \(v\), the algorithm will use its colour from those available \(d\) colours to colour \(v\).
+		\State Add $v$ to the front of $O$
 
-	Then when considering colouring the nodes after \(v\), we notice that by construction, none of those nodes are adjacent to \(v\).
-	And every adjacent node to \(v\) has already been coloured.
+		\State Delete $v$ from $V$
 
+		\State Delete all $e$ from $E$ such that $e$ is incident to $v$
 
+		\EndWhile
+
+		\State return the ordering
+
+		\EndProcedure
+
+	\end{algorithmic}
+
+	Claim: Let \(G = (V, E)\) be a connected graph with maximum degree \(d\). Then the ordering produced from Create Ordering uses at most \(d\) colours when the greedy algorithm is run on it.
+
+	Proof: Let \(O = (v_1, v_2, \dots, v_n)\) be the ordering produced from the proposed algorithm.
+
+	We start with an empty graph \(G' = (V', E')\) of empty edges and vertices. We will in order return the vertices and edges.
+
+	Consider the subgraph \(G'(v_d)\) that contains all the nodes up to \(v_d\) in the ordering and the associated edges between those vertices.
+
+	Now, observe that \(v_d\) has at most \(d - 1\) neighbours by construction of the ordering.
+
+	Then by removing \(v_d\) from this subgraph, the remaining \(d - 1\) nodes clearly have at most \(d - 1\) edges, and thus its maximum degree is \(d - 1\).
+	Hence, it will be can coloured with at most \(d\) colours through greedy. Since \(v_d\) has at most \(d - 1\) neighbours, then it can still be coloured uniquely by the other \(d\) colours.
+
+	For each addition from \(v_{d+1}\) to \(v_{n}\), by construction each of them had at most \(d - 1\) neighbours at the time of removal and thus can be uniquely coloured from the other used \(d\) colours.
+
+	This proves the claim.
 \end{soln}
