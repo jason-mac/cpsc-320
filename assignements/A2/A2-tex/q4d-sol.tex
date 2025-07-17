@@ -1,0 +1,34 @@
+\begin{soln}
+	Denote greedy solution by \(G = (g_1, g_2, \dots, g_k)\). It is clear that every shift intersects with itself.
+
+	Let \(O = (o_1, o_2, \dots, o_l)\) be optimal solution with it's shifts ordered in the same ascending fashion as \(G\).
+
+	We will prove the lemma by induction.
+
+	We see that by construction, \(f(g_1) \leq f(o_1)\) and that \(s(g_1) \leq s(o_1)\). Thus, we must have that \(s(o_1) \leq f(g_1)\) otherwise optimal solution would have missed \(g_1\).
+
+	Hence, anything that \(g_1\) intersects, \(o_1\) intersects, but \(o_1\) finishes slighltly ahead and we get that at time \(f(g_1)\)
+	greedy has chosen less than or as many shifts as optimal.
+
+	We assume that this is true for time \(f(g_n)\) where \(n \in \mathbb{N}\). We want to show this is true for \(n + 1\).
+
+	Then \(G\) has less than or as many shifts as \(O\) at time \(f(g_n)\).
+
+	Then we notice that for \(f(g_{n + 1}) \leq f(o_{n + 1})\) either they intersect or not at these times.
+
+	But if they do not intersect this means that \(O\) does not deem it necessary to add \(g_{n+1}\) which means that \(o_{n}\) must have intersected it.
+
+	Hence, \(s(o_n) < f(g_n) \leq f(o_n)\).
+
+	If they do not then this measn that for which ever shifts that \(g_{n+1}\) intersects with \(o_{n+1}\) does not.
+
+	For contradiction, lets say that \(G\) has more chosen more volunteers at time \(f(g_{n+1})\).
+
+	Then this means that from \((s(o_{n+1}), f(o_{n+1}))\) \(O\) had more intersections than \(G\) from \((s(g_{n+1}), f(g_{n+1}))\).
+
+	Notice that \(\)
+
+	But we must have that \(s(o_{n+1}) \leq f(g_{n+1}) \leq f(o_{n+1})\) otherwise \(O\) would have skipped
+
+
+\end{soln}

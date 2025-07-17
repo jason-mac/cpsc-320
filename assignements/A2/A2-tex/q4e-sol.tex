@@ -1,0 +1,24 @@
+\begin{soln}
+	To sort the the list \(V\) in ascending order in terms of its finish time will take \(O(n\log(n))\) time upfront assuming the list is of size \(n\).
+
+	Then an iteration through the list where we add a shift to the solution as we go is \(O(1)\) time.
+
+	At the time of addition, we also have to delete all intersecting shifts. In this case, we can iterate to the next position in the list until \(f(v_i) < s(v_{k})\) where \(i < k\).
+
+	Finding the next appropiate position is then notice that at each traversal in the list we are either adding a shift or moving onto the next position.
+
+	Thus, this whole traversal takes \(O(n)\). Having already spent \(O(n\log(n))\) to sort, the algorithm is bounded by \(O(n\log(n))\).
+\end{soln}
+
+
+
+
+
+
+
+
+
+
+
+
+
