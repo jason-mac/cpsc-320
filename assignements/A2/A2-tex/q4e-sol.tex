@@ -1,13 +1,16 @@
 \begin{soln}
-	To sort the the list \(V\) in ascending order in terms of its finish time will take \(O(n\log(n))\) time upfront assuming the list is of size \(n\).
+	First, we sort the list \( V \) of \( n \) shifts in ascending order by their finish times. This takes \( O(n \log n) \) time.
 
-	Then an iteration through the list where we add a shift to the solution as we go is \(O(1)\) time.
+	Then we iterate through the list from left to right and start selecting shifts, once a shift has been selected we add it to the solution set.
+	The first shift is always selected.
 
-	At the time of addition, we also have to delete all intersecting shifts. In this case, we can iterate to the next position in the list until \(f(v_i) < s(v_{k})\) where \(i < k\).
+	Next, we traverse to find the next selected shift in the ordered list that does not intersect with it.
 
-	Finding the next appropiate position is then notice that at each traversal in the list we are either adding a shift or moving onto the next position.
+	Intersection can be checked in \(O(1)\) time, by verifying that the selected shifts finish time is after the start time of the current potential candidate shift we are looking at.
 
-	Thus, this whole traversal takes \(O(n)\). Having already spent \(O(n\log(n))\) to sort, the algorithm is bounded by \(O(n\log(n))\).
+	Notice in this process, each shift is visited at most once, either it is selected and added to the solution, or it is skipped due to intersection. Thus, the total traversal takes \( O(n) \) time.
+
+	Combining both steps, the overall runtime of the algorithm is: \(O(n \log n + n) = O(n \log n)\).
 \end{soln}
 
 

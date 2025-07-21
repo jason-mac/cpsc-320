@@ -1,5 +1,7 @@
 \begin{soln}
-	Denote the greedy solution by \(G = (g_1, g_2, \dots, g_k)\). Where we have chosen \(k\) shifts from the set \(V\).
+	Denote greedy solution by \(G = (g_1, g_2, \dots, g_k)\). It is clear that every shift intersects with itself.
 
-	Lemma: At time \(f(g_i)\), greedy has less or as many volunteer shifts chosen than the optimal solution.
+	Let \(O = (o_1, o_2, \dots, o_l)\) be optimal solution whose shifts are ordered in the by finish time as in \(G\).
+
+	Lemma: \(f(g_i) \leq f(o_i)\), for each \(i \leq \min(l, k)\).
 \end{soln}
