@@ -1,0 +1,80 @@
+\section{Constrained Shortest Paths}
+A  company is leasing communication bandwidth from a national telecom provider to establish  a new connection between its office in Vancouver and its office in Newark.
+
+The telecom provider's network is represented by a graph $G=(V,E)$ and each edge $(u,v)$ has an advertised price $p(u,v)$.  In addition, each edge
+has a transit delay $d(u,v)$ due to node equipment. Suppose a new connection is to be established between two given nodes $s,t \in V$ and we require that the total delay between the two nodes be no more than $D$. Assume that all prices and delays are greater than 0. The company would therefore like to find the cheapest $st$-path which obeys  this constraint. In other words, the problem to solve is:
+\[
+	\min_{\mbox{$P$ an $st$-path}}  p(P) \textrm{ such that } d(P)\leq D
+\]
+
+Here $p(P)$ denotes the price of the path $P$ -- that is $\sum_{(u,v) \in P} p(u,v)$ -- and $d(P)$ denotes the total delay of the path $P$ -- that is, $\sum_{(u,v) \in P} d(u,v)$.
+
+
+\begin{questions}
+	\question[5] For each $v \in V$, define
+	$P(\delta,v)$ to be  the minimum cost of a path from $s$ to $v$ with total communication delay at most $\delta$. Write a recurrence to define $P(\delta, v)$.
+
+	\ifsolutions\input{q4a-sol.tex}\fi
+
+	\begin{soln}
+		I care about making the least expensive path from \(s, t\) such that \(p(P_{s-t}) = price\) is minimized as much as possible, but also that \(d(P) \leq D\) where this means the delay.
+
+		First, we define a base case that the path from \(s\) to itself will have cost zero, so long as the delay is non-negative.
+
+		In the case where we look at a case where delay less then zero, we will give it a cost of ininfity.
+
+		Then in the other cases, we look at the last node in the Path, and look at candidate nodes that precede it, say it's \(u\).
+
+		If such a node is going to precede it, then the delay between that node and \(v\) plus the delay from the best path \(s\) to \(u\) should be \(\delta\).
+
+		We also should have that the cost of the path from \(s\) to \(u\) plus the cost of the edge from \((u, v)\) should be minimized across all possible candidates.
+
+		\[
+			P(\delta, v) = \begin{cases}
+				0                                                      & \text{if } s = v \text{ and } \delta \geq 0 \\
+				\infty                                                 & \text{ if } \delta < 0                      \\
+				\min_{(u, v) \in E} (P(\delta - d(u, v), u) + p(u, v)) & \text{ otherwise }
+			\end{cases}
+		\]
+
+	\end{soln}
+
+	\question[7] Give a recursive memoized algorithm to solve for $P(D,v)$ for a given maximum delay $D$ and node $v$.
+
+	\ifsolutions\input{q4b-sol.tex}\fi
+
+	\begin{soln}
+		Assume that all relevant functions and arrays are defined.
+
+		I.e. weight functions for delays \(d\), cost weight functions \(p\), adjacency lists, edge lists.
+
+		\begin{algorithmic}[1]
+			\Procedure{Find-Best-Path-Wrapper}{$D, v$}
+			\State Define $P[(\delta, u)] = $ min cost to reach node $u$ from $s$ with delay at most $\delta$ using a dictionary
+			\State \Return Find-Best-Path($D, v, P$)
+			\EndProcedure
+		\end{algorithmic}
+
+		\newpage
+
+		\begin{algorithmic}[1]
+			\Procedure{Find-Best-Path}{$\delta, u, P$}
+			\If {$s = u$ and $\delta \geq 0$}
+			\State \Return $0$
+			\EndIf
+			\If {$\delta < 0$}
+			\State \Return $\infty$
+			\EndIf
+			\If{$P[(\delta, u)] = None$}
+			\State $P[(\delta, u)] = \min_{(u', u) \in E}(\text{Find-Best-Path}(\delta - d(u', u), u', P) + p(u', u))$
+			\EndIf
+			\State \Return $P[(\delta, u)]$
+			\EndProcedure
+		\end{algorithmic}
+
+	\end{soln}
+
+
+
+
+\end{questions}

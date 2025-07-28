@@ -1,0 +1,95 @@
+\section{The Path to Victory}
+
+Suppose we have an undirected graph $G$ that is a \textit{path}: namely, its nodes can be written as $v_1, v_2, \ldots v_n$ with an edge between $v_i$ and $v_j$ if and only if $i$ and $j$ are consecutive numbers. Each node $v_i$ has a positive weight $w_i$. For example, in the following path, the weights are shown as numbers drawn inside the nodes:
+
+\begin{figure*}[tbh!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{path.pdf}
+\end{figure*}
+
+In this problem, we want to find the \textit{maximum independent set}. An independent set is a subset of nodes such that no two of them share and edge, and the maximum independent set is the independent set with largest total weight. For example, in the graph above, the largest-weight independent set is $v_2$ and $v_5$, with total weight 17.
+
+Assume you're given an $n$-dimensional array $V$, where $V[i]$ contains the weight of the node $v_i$ (note that we are assuming 1-based indexing).
+
+\begin{questions}
+	\question[3] Give a recurrence $M(i)$ (for $0 \le i \le n$) that defines the weight of the maximum independent set of the first $i$ nodes in $G$.
+
+	\ifsolutions\input{q2a-sol.tex}\fi
+
+	\begin{soln}
+		\[
+			M(i) =
+			\begin{cases}
+				\max(M(i - 1), M(i - 2) + V[i]), & i \geq 3 \\
+				\max(V[2], V[1]),                & i = 2    \\
+				V[1],                            & i = 1    \\
+				0,                               & i < 1
+			\end{cases}
+		\]
+	\end{soln}
+
+	\question[5] Give pseudocode for a recursive or iterative dynamic programming solution to find the weight of the maximum independent set in $G$.
+
+	\ifsolutions\input{q2b-sol.tex}\fi
+	\begin{soln}
+		\begin{algorithmic}[1]
+			\Procedure{MAX-WEIGHT}{$V, n$}
+			\If {$n = 1$}
+			\State \Return {$V[1]$}
+			\EndIf
+			\State $w_{1} = V[1]$
+			\State $w_{2} = \max(V[1], V[2])$
+			\For {$i = 3, 4, \dots n$}
+			\State $w_{max} = \max(w_2, w_1 + V[i])$
+			\State $w_1 =w_2$
+			\State $w_2 = w_{max}$
+			\EndFor
+			\State \Return $w_2$
+			\EndProcedure
+		\end{algorithmic}
+
+		\begin{algorithmic}[1]
+			\Procedure{Max-Weight}{$V, W, n$}
+			\If {$n < 1$}
+			\State \Return $0$
+			\EndIf
+			\If {$W[n] = -1$}
+			\State $W[n] = \max(\text{Max-Weight}(V, W, n - 1), \text{Max-Weight}(V, W, n - 2) + V[n])$
+			\EndIf
+			\State \Return $W[n]$
+			\EndProcedure
+		\end{algorithmic}
+
+		\begin{algorithmic}[1]
+			\Procedure{Weight-Max-Independent-Set}{$V, n$}
+			\State Define $W[1..n]$ such that $W[i] = -1$ for each $i = 1, 2, \dots, n$
+			\State \Return {Max-Weight($V, W, n$)}
+			\EndProcedure
+		\end{algorithmic}
+	\end{soln}
+
+	\question[4] Write a function that takes the table from your dynamic programming solution and the array $V$ and returns the indices (in 1-based indexing) of the actual nodes in the maximum independent set (i.e., write an ``explain'' function like we've done in class).
+
+	\ifsolutions\input{q2c-sol.tex}\fi
+	\begin{soln}
+		\begin{algorithmic}[1]
+			\Procedure{explain}{$V, W, n$}
+			\State Define $R := \varnothing$
+			\State Define $i := n$
+			\While{$i > 3$}
+			\If {$W[i] == W[i - 2] + V[i]$}
+			\State Add $i$ to $R$
+			\State $i := i - 1$
+			\EndIf
+			\State $i := i - 1$
+			\EndWhile
+			\If{$i = 1$}
+			\State Add $i$ to $R$
+			\EndIf
+			\State \Return $R$
+			\EndProcedure
+		\end{algorithmic}
+	\end{soln}
+
+
+\end{questions}

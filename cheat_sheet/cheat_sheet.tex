@@ -1,0 +1,76 @@
+%! TEX root = cheat_sheet.tex
+\documentclass[a4paper, landscape]{article}
+\input{src/default.tex}
+
+% Global setttings
+\def\subject{Subject}
+\def\semester{Semester}
+\def\author{Author}
+\def\cols{4}
+
+
+\cheatsheet{
+	\section{G-S Algorithm}
+	\begin{algorithmic}[1]
+		\Procedure{Gale-Shapley}{$E$, $A$}
+		\State Init all \(e\) and \(a\) as free
+		\While {\(\exists e\) s.t. \(e\) free \(\wedge\) \(\exists a\) on its \(P(e)\) list}
+		\State choose $e \in E$
+		\While {\(e\) has open slots}
+		\State make offer to next applicant $a \in A$ on $e$'s preference list
+		\If {$a$ is unmatched}
+		\State Match $e$ with $a$
+		\ElsIf {$a$ prefers $e$ to their current employer $e'$}
+		\State Unmatch $a$ and $e'$
+		\State Match $e$ with $a$
+		\EndIf
+		\State cross $a$ off $e$'s preference list
+		\EndWhile
+		\EndWhile
+		\State report the set of matched pairs as the final matching
+		\EndProcedure
+	\end{algorithmic}
+
+	\subsection{Subsection}
+	This is a subsection
+
+	\subsubsection{Subsubsection}
+	This is a subsubsection
+
+	% Two-column layout within the section
+	\begin{minipage}{0.49\linewidth}
+		Left
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.49\linewidth}
+		Right
+	\end{minipage}
+
+	\section{Table Example}
+	\begin{tabularx}{\linewidth}{|X|X|X|}
+		\hline
+		\textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} \\
+		\hline
+		Row 1, Col 1      & Row 1, Col 2      & Row 1, Col 3      \\
+		\hline
+		Row 2, Col 1      & Row 2, Col 2      & Row 2, Col 3      \\
+		\hline
+		Row 3, Col 1      & Row 3, Col 2      & Row 3, Col 3      \\
+		\hline
+	\end{tabularx}
+
+	\section{Boxed Equation}
+	% Boxed equation with a simple math expression
+	\mathbox{
+		$E = mc^2$
+	}
+
+	\section{Input}
+	% Including an external file
+	\input{sections/00_Example}
+
+	\section{Image}
+	% Including an image with full width
+	%	\includegraphics[width=\linewidth]{img/example.png}
+}
+
