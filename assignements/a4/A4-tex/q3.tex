@@ -63,11 +63,12 @@ Formally, the conference events are given as an input list $V$, and each event $
 
 		If we consider some \(i < n\), either the optimal solution for \((i, i + 1, \dots, n)\) includes \(i\) or not.
 
-		If it includes \(i\), this means that all of the events do not intersect with \(i\), thus it must include the events from the optimal solution of the earliest that does not intersect it.
+		If it includes \(i\), then we must include into the optimal soltution the events that start after its finish time.
 
-		In otherwords, \(ME(i) = 1 + ME(N(i))\) where \(i\) is part of it.
+		Thus, we have that \(ME(i) = 1 + ME(N(i))\).
 
-		In the case where it does not include \(i\), this means there is some later starting event whose solution includes an event that intersects \(i\). Without further information, its at least the next starting event.
+		In the case where where \(i\) is not included, then there is some later finishing event who intersects it and is part of the optimal solution.
+		Without further information, its at least the next latest finishing event.
 
 		Thus, \(ME(i) = ME(i+1)\).
 		\[
