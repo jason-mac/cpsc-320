@@ -17,17 +17,15 @@ Here $p(P)$ denotes the price of the path $P$ -- that is $\sum_{(u,v) \in P} p(u
 	\ifsolutions\input{q4a-sol.tex}\fi
 
 	\begin{soln}
-		I care about making the least expensive path from \(s, t\) such that \(p(P_{s-t}) = price\) is minimized as much as possible, but also that \(d(P) \leq D\) where this means the delay.
+		First, define a base case, the path from \(s\) to itself will have cost zero, so long as the delay is non-negative.
 
-		First, we define a base case that the path from \(s\) to itself will have cost zero, so long as the delay is non-negative.
+		If delay is less then zero, we will give it a cost of ininfity, since delays are assumed to be non-negative.
 
-		In the case where we look at a case where delay less then zero, we will give it a cost of ininfity.
+		For the other cases, consider the last node in the path and the node that precedes it, denote it by \(u\).
 
-		Then in the other cases, we look at the last node in the Path, and look at candidate nodes that precede it, say it's \(u\).
+		If \(u\) is going to precede it, then the path from \(s\) to \(u\) should have delay at most \(\delta - d(u, v)\).
 
-		If such a node is going to precede it, then the delay between that node and \(v\) plus the delay from the best path \(s\) to \(u\) should be \(\delta\).
-
-		We also should have that the cost of the path from \(s\) to \(u\) plus the cost of the edge from \((u, v)\) should be minimized across all possible candidates.
+		Since we want the minimized cost path, then \(P(\delta, v) = \min_{(u, v) \in E} (P(\delta - d(u, v), u) + p(u, v))\).
 
 		\[
 			P(\delta, v) = \begin{cases}
