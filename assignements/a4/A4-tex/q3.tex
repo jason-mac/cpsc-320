@@ -59,18 +59,31 @@ Formally, the conference events are given as an input list $V$, and each event $
 
 
 	\begin{soln}
-		At event \(n\), being the latest in terms of start time we have no choice but to cover it using itself, so the minimum must be \(ME(n) = 1\).
+		For \(\{n\}\), we have no choice but to cover \(n\) using itself, so then \(ME(n) = 1\).
 
 		If we consider some \(i < n\), either the optimal solution for \((i, i + 1, \dots, n)\) includes \(i\) or not.
 
+<<<<<<< HEAD
 		If it includes \(i\), then we must include into the optimal soltution the events that start after its finish time.
 
 		Thus, we have that \(ME(i) = 1 + ME(N(i))\).
 
 		In the case where where \(i\) is not included, then there is some later finishing event who intersects it and is part of the optimal solution.
 		Without further information, its at least the next latest finishing event.
+=======
+		If it includes \(i\), this means the other events in the solution do not intersect with \(i\).
 
-		Thus, \(ME(i) = ME(i+1)\).
+		Thus it includes the events from the optimal solution from the event that starts after its finish time.
+
+		Hence, \(ME(i) = 1 + ME(N(i))\).
+
+		If it does not include \(i\), then there is some later starting event whose optimal solution covers \(i\).
+
+		Such an event is at least the next starting event. Hence, \(ME(i) = ME(i + 1)\).
+
+		Putting these together,
+>>>>>>> e3d4a16d18b0bdb38591654c355f745f8e7281f0
+
 		\[
 			ME(i) = \begin{cases}
 				1                              & \text{if } i = n \\
