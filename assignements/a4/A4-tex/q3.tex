@@ -59,26 +59,12 @@ Formally, the conference events are given as an input list $V$, and each event $
 
 
 	\begin{soln}
-		For \(\{n\}\), we have no choice but to cover \(n\) using itself, so then \(ME(n) = 1\).
-
-		If we consider some \(i < n\), either the optimal solution for \((i, i + 1, \dots, n)\) includes \(i\) or not.
-
-		If it includes \(i\), this means the other events in the solution do not intersect with \(i\).
-
-		Thus it includes the events from the optimal solution from the event that starts after its finish time.
-
-		Hence, \(ME(i) = 1 + ME(N(i))\).
-
-		If it does not include \(i\), then there is some later starting event whose optimal solution covers \(i\).
-
-		Such an event is at least the next starting event. Hence, \(ME(i) = ME(i + 1)\).
-
-		Putting these together,
 
 		\[
 			ME(i) = \begin{cases}
-				1                              & \text{if } i = n \\
-				\min(1 + ME(N(i)),  ME(i + 1)) & \text{if } i < n
+				0            & \text{if } i > n            \\
+				1            & \text{if } N(i) = \infty    \\
+				1 + ME(N(i)) & \text{if } N(i) \neq \infty
 			\end{cases}
 		\]
 
@@ -89,12 +75,15 @@ Formally, the conference events are given as an input list $V$, and each event $
 	\ifsolutions\input{q3c-sol.tex}\fi
 	\begin{soln}
 		\begin{algorithmic}[1]
-			\Procedure{MIN-EVENTS}{$V, n, N$}
+			\Procedure{MIN-EVENTS}{$n, N$}
 			\State Define $ME[1 \dots n]$
-			\State $ME[n] = 1$
-			\State Define $i = n - 1$
+			\State $i \gets n$
 			\While {$i \geq 1$}
-			\State $ME[i] = \min(1 + ME[N[i]], ME[i+1])$
+			\If {$N(i) = \infty$}
+			\State $ME[i] = 1$
+			\Else
+			\State $ME[i] = 1 + ME[N[i]]$
+			\EndIf
 			\State $i := i - 1$
 			\EndWhile
 			\State \Return $ME[1]$

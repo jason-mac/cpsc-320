@@ -20,8 +20,7 @@ Assume you're given an $n$-dimensional array $V$, where $V[i]$ contains the weig
 		\[
 			M(i) =
 			\begin{cases}
-				\max(M(i - 1), M(i - 2) + V[i]), & i \geq 3 \\
-				\max(V[2], V[1]),                & i = 2    \\
+				\max(M(i - 1), M(i - 2) + V[i]), & i \geq 2 \\
 				V[1],                            & i = 1    \\
 				0,                               & i < 1
 			\end{cases}
@@ -37,35 +36,16 @@ Assume you're given an $n$-dimensional array $V$, where $V[i]$ contains the weig
 			\If {$n = 1$}
 			\State \Return {$V[1]$}
 			\EndIf
-			\State $w_{1} = V[1]$
-			\State $w_{2} = \max(V[1], V[2])$
-			\For {$i = 3, 4, \dots n$}
-			\State $w_{max} = \max(w_2, w_1 + V[i])$
-			\State $w_1 =w_2$
-			\State $w_2 = w_{max}$
+			\State Define $M[0..n]$
+			\State  $M[0] \gets 0$
+			\State  $M[1] \gets V[1]$
+			\For {$i = 2, 3, 4, \dots n$}
+			\State $M[i] = \max(M[i - 1], M[i-2] + V[i])$
 			\EndFor
-			\State \Return $w_2$
+			\State \Return $M[n]$
 			\EndProcedure
 		\end{algorithmic}
 
-		\begin{algorithmic}[1]
-			\Procedure{Max-Weight}{$V, W, n$}
-			\If {$n < 1$}
-			\State \Return $0$
-			\EndIf
-			\If {$W[n] = -1$}
-			\State $W[n] = \max(\text{Max-Weight}(V, W, n - 1), \text{Max-Weight}(V, W, n - 2) + V[n])$
-			\EndIf
-			\State \Return $W[n]$
-			\EndProcedure
-		\end{algorithmic}
-
-		\begin{algorithmic}[1]
-			\Procedure{Weight-Max-Independent-Set}{$V, n$}
-			\State Define $W[1..n]$ such that $W[i] = -1$ for each $i = 1, 2, \dots, n$
-			\State \Return {Max-Weight($V, W, n$)}
-			\EndProcedure
-		\end{algorithmic}
 	\end{soln}
 
 	\question[4] Write a function that takes the table from your dynamic programming solution and the array $V$ and returns the indices (in 1-based indexing) of the actual nodes in the maximum independent set (i.e., write an ``explain'' function like we've done in class).
@@ -77,14 +57,14 @@ Assume you're given an $n$-dimensional array $V$, where $V[i]$ contains the weig
 			\State Define $R := \varnothing$
 			\State Define $i := n$
 			\While{$i > 3$}
-			\If {$W[i] == W[i - 2] + V[i]$}
+			\If {$M[i] == M[i - 2] + V[i]$}
 			\State Add $i$ to $R$
 			\State $i := i - 1$
 			\EndIf
 			\State $i := i - 1$
 			\EndWhile
 			\If{$i = 1$}
-			\State Add $i$ to $R$
+			\State Add $1$ to $R$
 			\EndIf
 			\State \Return $R$
 			\EndProcedure
