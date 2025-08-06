@@ -1,0 +1,65 @@
+\section{Very Special Problems}
+
+In this question, we consider special cases of NP-complete problems. Formally, we say that Problem B is a \textbf{special case} of Problem A if every instance of Problem B can be viewed as an instance of Problem A. We've seen examples of this in class: for example, 3-SAT is a special case of SAT (where every clause has length 3). Minimum spanning tree is a special case of Steiner Tree, in which the set of vertices we need to connect includes all the vertices in $V$.
+
+\begin{questions}
+
+	\question[4] Consider the \textbf{Bounded-Leaf Spanning Tree Problem (BLST)}: given a graph $G = (V,E)$ and an integer $k$, does $G$ have a spanning tree with no more than $k$ leaves?
+
+	Give an NP-complete problem that is a special case of BLST, and justify why this problem is a special case.
+
+	\ifsolutions\input{q3a-sol.tex}\fi
+
+	\begin{soln}
+		Let \(G = (V, E)\) be a graph. Suppose that this graph had a hamiltonian path.
+
+		This means we can form a spanning tree out of this graph using exactly \(n - 1\) edges.
+
+		Let \(P = (v_1, v_2, \dots, v_n)\) be the hamiltonian path in \(G\), and consider it the spanning tree structure.
+
+		By definition, a leaf in a tree is a node with degree \(1\). We see that \(v_1, v_n\) both have degree \(1\).
+
+		Hence, this tree has exactly two leaves.
+
+		Thus, if we take \(G\) and ask the question to HAMPATH, does this graph contain a hamiltonian path?
+
+		If the reply is yes, then \(G\) has a spanning tree with \(2\) leaves, or we can also say no more than \(2\) leaves.
+
+		In other words, HAMPATH is a special case of BLST where we specify \(k = 2\).
+
+	\end{soln}
+
+	\question[3] You showed in the previous question that there is an NP-complete problem that is a special case of BLST, and it is not difficult to show that BLST is in NP (though we are not asking you to do this). Does this imply that BLST is NP-complete? Justify your answer.
+
+	\ifsolutions\input{q3b-sol.tex}\fi
+
+	\begin{soln}
+		This does not necessarily imply that BLST is NP-complete. Let \(Y\) be some NP-complete problem.
+
+		By definition, to prove BLST is NP-complete, it remains to show that \(Y \leq_p BLST\).
+
+		While we showed in the previous part that an NP-complete problem (HAMPATH) is a special case of BLST (for \( k = 2 \)), this is not sufficient to conclude NP-completeness of BLST in general.
+
+		In particular, it remains to show that \(BLST(k = 2) \leq_p BLST\) or equivalently \(HAMPATH \leq_p BLST\).
+
+		That is, we must show a polynomial time reduction from HAMPATH (or any another problem \(Y\)) to BLST, not just observe that one is a special case of the other.
+
+		Hence, unless such a reduction is explicitly given with proof of correctness, we cannot conclude that BLST is NP-complete.
+	\end{soln}
+
+
+	\question[4] Give an example of a polytime-solvable problem you have seen in this class that is a special case of an NP-complete problem. Justify your answer.
+
+	\ifsolutions\input{q3c-sol.tex}\fi
+
+	\begin{soln}
+		Recall the problem of finding a topological ordering on a directed graph \(G = (V, E)\).
+
+		The dynamic programming solution can produce a solution in polynomial time.
+
+
+
+		Now recall the
+	\end{soln}
+
+\end{questions}
