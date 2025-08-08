@@ -151,17 +151,27 @@ A solution to this problem is a \textit{categorization}, which we define as a pa
 	\ifsolutions\input{q1c-sol.tex}\fi
 
 	\begin{soln}
-		\textbf{Definition:} A problem is NP-complete if it's NP and all NP-complete problems can be reduced to it.
 
-		To satisfy this definition, it sufficies to reduce graph colouring to MMCP.
+		Let an instance of graph colouring be given with graph \(G = (V, E)\) and bound \(k\). With \(|V| = n\).
 
-		Let \(G = (V, E)\) be given. Let \(k \in \mathbb{N}\) such that \(k \leq n\). We constuct the following partition and edge set.
+		We constuct the following partition and edge set for an instance of \(MMCP\).
 
-		For each pair \(u, v \in V\), if \((u, v) \in E\) add \((u, v, 0)\) to \(E'\), otherwise add \((u, v, 1)\) to \(E'\).
+		For each pair \(u, v \in V\), if \((u, v) \in E\) add \((u, v, 0)\) to \(E'\), otherwise if \((u, v) \notin E\) add \((u, v, 1)\) to \(E'\).
 
-		Then we say that each \(v \in V\) is a photo with the weighted edge set \(E'\).
+		Then we have \(n\) photos for each \(v \in V\) with the weighted edge set \(E'\).
 
-		We then ask the MMCP solver if there exists a parition of \(V\) into \(k\) categories so that each edge intra-category edge is at least \(1\).
+		We want \(c = k\) categories, and weight at least \(1\) amongst the intra-category edges. This completes the reduction.
+
+		The goal is to force pairs of vertices that have an edge into different categories that becomes my coloring.
+
+		So, if I give them weight \(0\) then MMCP should not want to put them into the same category since that would not be at least \(1\).
+
+		Then this runs in polynomial time since the only thing to do is to make a copy of \(V\) and construct a new edge set \(E'\).
+
+		The copy of \(V\) is just \(O(n)\) time, while making \(E'\) is \(O(n^2)\) since we want a complete edge set for each pair of vertices.
+
+		Hence, overall its polynomial.
+
 	\end{soln}
 
 	\question[3] To prove your reduction correct, you must prove that the answer to the MMCP instance is YES if and only if the answer the answer to the graph colouring instance is YES. For this part of the question, prove that if the answer to the graph colouring instance is YES, then the answer to your reduced MMCP instance is YES.
@@ -171,21 +181,30 @@ A solution to this problem is a \textit{categorization}, which we define as a pa
 	\begin{soln}
 		Claim: Given the reduction, Graph Colouring instance is YES \(\iff\) MMCP instance is YES.
 
-		Proof \(\implies\): Let an instance of Graph colouring be given, with \(G = (V, E)\). Reduce \(E\) to \(E'\) as before.
+		Proof \(\implies\): Suppose Graph Colouring instance is YES.
 
-		Suppose \(G\) can be coloured with no more than \(k\) colours, such that no adjacent vertices share a colour.
+		Observe having weight at least \(1\) is the same as being \(1\), since similarity is between \(0\) and \(1\).
+
+		Then \(G\) can be coloured with no more than \(k\) colours, such that no adjacent vertices share a colour.
+
+		WLOG assume \(G\) uses \(k\) colours, if it it used less, we could partition some colour into more colours.
+
+		Let \(f:V \to \{1, 2, \dots, k\}\) be the colouring function such that if \((u, v) \in E\) then \(f(u) \neq f(v)\).
 
 		We show there exists partition of \(V\) to \(k\) categories so that the intra-category edges have weight \(1\).
 
-		Place each node in a category of it's respective colour, \(C_j\). If \(G\) is \(i \leq k\) colourable, then it's \(k\) colourable.
+		For each \(j = 1, 2, \dots k\) construct categories, \(C_j = \{v \in V : f(v) = j\}\).
 
-		WLOG, we will assume that \(G\) is exactly \(k\) colourable. Thus, we have a partition of \(k\) categories.
+		Now consider an arbitrary category \(C_i\) and let \(u, v \in C_i\).
 
-		Observe that by definition, if \(u, v \in C_j\) then they share a colour, which implies they are not adjacent.
+		Then we have that \(f(u) = f(v) = i\). By contrapostion, this means that \((u, v) \notin E\).
 
-		Which means that the edge weight for \((u, v)\) in \(E'\) is \(1\) by construction. Hence, we get that the intra-category edges have weight at least \(1\).
+		By construction, we have \((u, v, 1) \in E'\). Since \(i\) was arbitrary, then every intra-category edge is weighted at least \(1\).
 
-		This completes the proof.
+		This completes the proof of this direction.
+
+
+
 
 
 	\end{soln}
@@ -195,24 +214,31 @@ A solution to this problem is a \textit{categorization}, which we define as a pa
 	\ifsolutions\input{q1e-sol.tex}\fi
 
 	\begin{soln}
-		Proof \(\impliedby\): Let the reduction from graph colouring to MMCP be given.
+		Proof \(\impliedby\):
 
-		We assume that MMCP returned to use the answer YES.
+		Assume that MMCP instance is YES.
 
-		We have a node set \(V\), edge set \(E'\), partition into \(k\) categories with intra-category edge weight \(1\).
+		Then we have \(n\) photoes partitioned into \(k\) categories with all intra-category edges weight at least \(1\).
 
-		For each category, assign a distinct colour, and colour all nodes in that category with the same colour.
+		We denote the categories by \(C_1, C_2, \dots, C_k\).
 
-		The claim is this is a valid colouring of \(G = (V, E)\). It suffices to show no adjacent nodes share a colour.
+		Then define the function \(f:V \to \{1, 2, \dots, k\}\) by
+		\[
+			f(v) = \begin{cases}
+				1 & \text{if } v \in C_1 \\
+				2 & \text{if } v \in C_2 \\
+				\vdots                   \\
+				k & \text{if } v \in C_k
+			\end{cases}
+		\]
 
-		Consider any edge \((u, v) \in E\). By construction, this edge appears in \(E'\) with weight \(0\).
+		It suffices to show that if \(f(v) = f(u)\) then \((u, v) \notin E\).
 
-		Since the intra-category edges in the MMCP partition all have weight at least \(1\), it must be that \(u\) and \(v\) belong to different categories,
-		otherwise it would have returned NO as an answer.
+		Suppose that \(f(v) = f(u) = i\). Then \(u, v \in C_i\) for some \(i\) with \(1 \leq i \leq k\).
 
-		Thus, \(u\) and \(v\) received distinct colours, which means that adjacent vertices do not share a colour.
+		Since, MMCP is YES, this means \((u, v, 1) \in E'\) as all intra-category edges are weighted at least \(1\).
 
-		Therefore, the constructed colouring is valid and uses at most \(k\) colours.
+		But we only added \((u, v, 1)\) to \(E'\) iff \((u, v) \notin E\). Thus, \((u, v) \notin E\) and the graph \(G\) is \(k\) colourable.
 
 		This completes the proof.
 

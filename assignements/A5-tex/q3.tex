@@ -11,21 +11,19 @@ In this question, we consider special cases of NP-complete problems. Formally, w
 	\ifsolutions\input{q3a-sol.tex}\fi
 
 	\begin{soln}
-		Let \(G = (V, E)\) be a graph. Suppose that this graph had a hamiltonian path.
+		Let an instance of BLST be given where \(k\) is specified to be \(2\) and that the answer is yes.
 
-		This means we can form a spanning tree out of this graph using exactly \(n - 1\) edges.
+		Then we have some spanning tree \(T\) of \(G\) such that it has no more than \(2\) leaves.
 
-		Let \(P = (v_1, v_2, \dots, v_n)\) be the hamiltonian path in \(G\), and consider it the spanning tree structure.
+		If \(G\) has at least \(2\) nodes, then \(T\) must have exactly \(2\) leaves, otherwise it means that \(G\) has one node.
 
-		By definition, a leaf in a tree is a node with degree \(1\). We see that \(v_1, v_n\) both have degree \(1\).
+		Since a spanning tree is connected, consider the path from one leaf to the other.
 
-		Hence, this tree has exactly two leaves.
+		Denote the leaf to leaf path by \(P = (v_1, v_2, \dots, v_n)\). Observe \((v_i, v_{i+1}) \in E\) for \(i = 1, 2, \dots, n -1\)
 
-		Thus, if we take \(G\) and ask the question to HAMPATH, does this graph contain a hamiltonian path?
+		But by definition, this is precisely a hamiltonian path.
 
-		If the reply is yes, then \(G\) has a spanning tree with \(2\) leaves, or we can also say no more than \(2\) leaves.
-
-		In other words, HAMPATH is a special case of BLST where we specify \(k = 2\).
+		Hence, hamiltonian path is a special case of BLST where \(k = 2\).
 
 	\end{soln}
 
@@ -34,15 +32,23 @@ In this question, we consider special cases of NP-complete problems. Formally, w
 	\ifsolutions\input{q3b-sol.tex}\fi
 
 	\begin{soln}
-		This does not necessarily imply that BLST is NP-complete. Let \(Y\) be some NP-complete problem.
+		This does not necessarily imply that BLST is NP-complete. We only so far know that BLST is NP.
 
-		By definition, to prove BLST is NP-complete, it remains to show that \(Y \leq_p BLST\).
+		To prove BLST is NP-complete, we must show that for every other NP problem \(Y\), that \(Y \leq_p\) BLST.
 
 		While we showed in the previous part that an NP-complete problem (HAMPATH) is a special case of BLST (for \( k = 2 \)), this is not sufficient to conclude NP-completeness of BLST in general.
 
+		For example, we can lax the conditions on HAMPATH and ask for any length path from \(s - t\).
+
+		The generalization becomes, does there exist a path from \(s - t\)? Disregaring needing exactly \(|V|\) nodes.
+
+		We know this is polynomial time solvable using BFS, assuming we have correct adjacency lists.
+
+		Thus, the special case becomes NP-complete, but the general is not. Hence, the issue is lack of reduction.
+
 		In particular, it remains to show that \(BLST(k = 2) \leq_p BLST\) or equivalently \(HAMPATH \leq_p BLST\).
 
-		That is, we must show a polynomial time reduction from HAMPATH (or any another problem \(Y\)) to BLST, not just observe that one is a special case of the other.
+		That is, we must show a polynomial time reduction from HAMPATH, not just observe that one is a special case of the other.
 
 		Hence, unless such a reduction is explicitly given with proof of correctness, we cannot conclude that BLST is NP-complete.
 	\end{soln}
@@ -53,13 +59,54 @@ In this question, we consider special cases of NP-complete problems. Formally, w
 	\ifsolutions\input{q3c-sol.tex}\fi
 
 	\begin{soln}
-		Recall the problem of finding a topological ordering on a directed graph \(G = (V, E)\).
+		Recall the problem we saw in tutorial 1, where we wish to know if a graph is bipartite.
 
-		The dynamic programming solution can produce a solution in polynomial time.
+		A graph \( G = (V, E) \) is \textbf{bipartite} if we can partition the vertices \( V \) into two disjoint sets \( U \) and \( W \) such that no two vertices in \( U \) are connected, and no two vertices in \( W \) are connected.
+
+		Then this problem is indeed a special case of the \( k \)-colouring problem with \( k = 2 \).
+
+		We prove this by showing that \( G \) is bipartite if and only if it is 2-colourable.
+
+		Suppose that \( G \) is 2-colourable. Then there is some function
+		\[
+			f : V \to \{1, 2\}
+		\]
+		such that if \( (v, u) \in E \), then \( f(u) \neq f(v) \).
+
+		Define the sets
+		\[
+			V_1 = \{ v \in V : f(v) = 1 \}, \quad V_2 = \{ v \in V : f(v) = 2 \}.
+		\]
+		We see \( V_1 \cap V_2 = \varnothing \), otherwise there exists \( v \) such that \( f(v) = 1 \) and \( f(v) = 2 \), a contradiction.
+
+		Now, let \( (u, v) \in V_1 \). Then \( f(u) = f(v) = 1 \), which implies by contrapositive that \((u, v) \notin E\).
+
+		A similar statement holds for \( V_2 \), and thus \( G \) is bipartite.
+
+		Now, suppose \( G \) is bipartite. Then there is \( V_1, V_2 \subseteq V \) so that no two vertices in either set are connected.
+
+		Consider the function
+		\[
+			f : V \to \{1, 2\} \quad \text{defined by} \quad
+			f(v) = \begin{cases}
+				1 & \text{if } v \in V_1, \\
+				2 & \text{if } v \in V_2.
+			\end{cases}
+		\]
+
+		Let \( (u, v) \in E \). Since \( G \) is bipartite, \( u \) and \( v \) cannot both be in the same set \( V_1 \) or \( V_2 \).
+
+		Hence, \(f(u) \neq f(v)\), and thus \( G \) is 2-colourable.
+
+		Now consider running a BFS on a graph \( G \) starting from some node \( v \), and colour it 1.
+
+		Then for each traversal step at a vertex \( v \), for every edge \( (v, u) \) we travel along, colour \( u \) with the opposite colour of \( v \) if it is not coloured yet.
+
+		If \( u \) has already been coloured and its colour is the same as \( v \), then report that \( G \) is not bipartite.
+
+		This algorithm runs in \( O(n + m) \) time, since we only add the extra computation of assigning colours to each vertex during the BFS traversal.
 
 
-
-		Now recall the
 	\end{soln}
 
 \end{questions}

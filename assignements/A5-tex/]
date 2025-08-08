@@ -71,11 +71,11 @@ We refer to the undirected version of this problem as \textbf{UHP} and the direc
 
 	\begin{soln}
 
-		Let \(G = (V, E)\) be an undirected graph. We construct a graph \(G' = (V', E')\) by the following.
+		Let \(G = (V, E)\) be an undirected graph. We construcut a graph \(G' = (V, E')\) by the following.
 
-		We make a copy of \(V\) and set \(V' = V\). Then for each \(\{u, v\} \in E\) add \((u, v), (v, u)\) to \(E'\).
+		For each \(\{u, v\} \in E\) add \((u, v), (v, u)\) to \(E'\).
 
-		Then for \(s, t \in V\) we ask DHP if there exists a Hamiltonian path from \(s\) to \(t\) in \(V'\) of \(G'\).
+		Then for \(s, t \in V\) we ask DHP if there exists a Hamiltonian path from \(s\) to \(t\) in \(G'\).
 
 	\end{soln}
 
@@ -85,25 +85,29 @@ We refer to the undirected version of this problem as \textbf{UHP} and the direc
 	\ifsolutions\input{q2b-sol.tex}\fi
 	\begin{soln}
 
-		We'll say that \(V = \{v_1, v_2, \dots, v_n\}\) s.t. \(v_1 = s\) and \(v_n = t\). We ask for Hamiltonian path from \(s\) to \(t\).
+		We'll say that \(V = \{s, v_1, v_2, \dots, v_{n-2}, t\}\). And we ask for Hamiltonian path from \(s\) to \(t\).
 
 		\((\implies)\): Suppose that the answer to the reduced DHP instance is YES.
 
-		Then there is a Hamiltonian path from \(s-t\) in \(G' = (V', E')\). Denote the hamiltonian path by \(P\).
+		Then there is a Hamiltonian path from \(s-t\) in \(G' = (V, E')\).
 
-		So, \(P = (v_1, v_2, \dots, v_{n-1}, v_n)\) and \((v_i, v_{i+1}) \in E'\) for \(i = 1, 2, \dots, n - 1\).
+		Then there is a simple path on \(V\), \((s, v_1, v_2, \dots, v_{n-2}, t)\) so that \((s, v_1) \in E', (v_{n-2}, t) \in E'\) and \((v_{i},v_{i+1}) \in E'\) for \(i = 1, 2, \dots n - 3\).
 
-		By construction, we have that \(\{v_i, v_{i+1}\} \in E\) for \(i = 1, 2, \dots, n - 1\).
+		By construction, we have that \(\{s, v_1\}, \{v_{n-2}, t\} \in E\) and \(\{v_i, v_{i+1}\} \in E\) for \(i = 1, 2, \dots, n - 3\).
 
-		By definition, \((v_1, v_2, \dots, v_{n- 1}, v_n)\) is hamiltonian path in \(G = (V, E)\).
+		By definition, \((s, v_1, v_2, \dots, v_{n- 2}, t)\) is also a simple path in \(G = (V, E)\).
+
+		But this contains all nodes in \(V\), thus it is a Hamiltonian path.
 
 		\((\impliedby)\): Suppose that the answer to UHP is YES for the graph \(G = (V, E)\).
 
-		Denote the Hamiltonian path by \(P = (v_1, v_2, \dots, v_{n-1}, v_n)\) so that \(\{v_i, v_{i+1}\} \in E\) for \(i = 1, 2, \dots, n - 1\).
+		This means that there is a Hamiltonian path, \((s, v_1, v_2, \dots, v_{n-2}, t)\) so that \(\{s, v_1\}, \{v_{n-2}, t\} \in E\) and \(\{v_i, v_{i+1}\} \in E\) for \(i = 1, 2, \dots, n - 3\).
 
-		Then since \(\{v_i, v_{i+1}\} \in E\) we have that \((v_i, v_{i+1}) \in E'\), by construction.
+		We aim to show there exists a Hamiltonian path in the reduction instance.
 
-		Then \(P\) is hamiltonian in \(G' = (V', E')\).
+		For \(G' = (V, E')\), \((s, v_1) \in E', (v_{n-2}, t) \in E'\) and \((v_{i},v_{i+1}) \in E'\) for each \(i = 1, 2, \dots n - 3\) by assumption.
+
+		Then the same path, \((s, v_1, v_2, \dots, v_{n-2}, t)\) is by definition Hamiltonian, since each node in \(V\) appears in it exactly once and the associated directed edges exist.
 
 		This completes the proof.
 	\end{soln}
@@ -114,27 +118,22 @@ We refer to the undirected version of this problem as \textbf{UHP} and the direc
 
 	\begin{soln}
 
-		Let I be an instance of DHP. Denote the directed graph by \(G = (V, E)\).
+		Let I be an instance of DHP. Let the directed graph, \(G = (V, E)\). Write \(V = \{s, v_1, v_2, \dots, v_{n-2}, t\}\). So, \(|V| = n\).
 
-		Write \(V = \{s, v_1, v_2, \dots, v_{n-2}, t\}\) so that \(|V| = n\). We now create an instance \(I'\) of UHP.
+		We will construct
 
-		For ease of notation, \((u, v)'\) will be an undirected edge, in particular, \((u, v)' = (v, u)' = \{u, v\}\).
 
-		We will construct a new undirected graph \(G' = (V', E')\) for an instance \(I'\) of \(UHP\).
+		Let \(f_o : V \to V_o\) and \(f_i : V \to V_i\) be bijective functions.
 
-		For each \(v \in V\) we construct new nodes \(v_{out}\) and \(v_{in}\), and add their undirected edge to \(E'\).
+		Here, we make two copies of the vertex set and will encode the directed edge using copies of the nodes.
 
-		Then for all \((u, v) \in E\) add the edge \((u_{out}, v_{in})'\) to \(E'\), unless \(u = t\) or \(v = s\).
+		We then construct a new edge set \(E'\) based on the original directed edge set \(E\).
 
-		We are making a `gadget' that encodes the directed nature of \(G\), by routing paths through \(v_{out}\) and \(v_{in}\).
+		Then for each edge \((v, u) \in E\) we add \(\{f_o(v), f_i(u)\}\) to \(E'\). We also add for each \(v \in V, \{f_o(v), f_i(v)\}\) to \(E'\).
 
-		The idea is that there is a ham path from \(s\) to \(t\) if and only if there is a ham path from \(s_{in}\) to \(t_{out}\).
+		Then our new graph is \(G' = (V_o \cup V_i, E')\).
 
-		We force the instance \(I'\) to start at \(s_{in}\), since it has no nodes 'incoming', it has to route through \(s_{out}\).
-
-		Similarly, to get to \(t_{out}\) it must route through \(t_{in}\), since \(t_{out}\) has no 'outgoing' nodes it connects to.
-
-		Lastly, we ask to UHP, does there exist a hampath from \(s_{in}\) to \(t_{out}\) in \(G'\)? This completes the reduction.
+		In other words, \(V_o\) corresponds to the original vertices acting as outgoing nodes, and \(V_i\) corresponds to the original vertices acting as incoming nodes.
 
 		As an illustration,
 
@@ -160,7 +159,7 @@ We refer to the undirected version of this problem as \textbf{UHP} and the direc
 		\vspace{1cm}
 
 		\begin{center}
-			New Undirected Graph
+			Reduced Undirected Graph using \(V_o\) and \(V_i\)
 		\end{center}
 
 		\begin{tikzpicture}[thick, node distance=2.5cm]
@@ -190,31 +189,47 @@ We refer to the undirected version of this problem as \textbf{UHP} and the direc
 
 		\end{tikzpicture}
 
-		To explain the ideas of the components, a sketch proof is provided that uses them.
+		We then ask UHP does there exists a hamiltonian path from \(f_i(s)\) to \(f_o(t)\) in \(G'\)?
 
-		Assume that \(I\) says yes. Let \(P = (v^1, v^2, \dots, v^n)\) be the hamiltonian path in \(G\) with \(v^1 = s\) and \(v^n = t\).
+		If yes, our original graph has a hamiltonian path, if not, then it does not.
 
-		For each \(v^i, v^{i+1}\), we have \((v^i, v^{i+1}) \in E\) s.t. \(1 \leq i \leq n -1\). \(E'\) naturally encodes this hamiltonian path.
+		Proof of Correctness: Say that \(|V| = n\), where \(n \geq 3\).
 
-		In other words, by construction, \((v^i_{out}, v^{i+1}_{in})' \in E'\), and we know an in node connects to its out node.
+		Assume DHP returns yes when asked if \(G = (V, E)\) if it contains hamiltonian path from \(s\) to \(t\) in \(V\).
 
-		Thus, a hamiltonian path in \(G'\) would be \(P' = (v^1_{in}, v^1_{out}, v^2_{in}, v^2_{out}, \dots, v^n_{in}, v^n_{out})\).
+		We show there exists a hamiltonian path in \(G' = (V_i \cup V_o, E')\) so that UHP returns yes on \(f_i(s), f_o(t)\).
 
-		The other direction uses the ideas we developed earlier. Assume that \(I\) says no to hampath question.
+		By construction, each of \(\{f_i(v), f_o(v)\} \in E'\). Let \(P = (s, v_1, v_2, \dots, v_{n-2}, t)\) be the hamiltonian path.
 
-		Then for every sequence \(P = (v^1, v^2, \dots, v^n)\) either some \(v^i\) is repeated or some \((v^i, v^{i+1}) \notin E\).
+		By definition, \((s, v_1), (v_{n-2}, t) \in E\) and \((v_i, v_{i+1}) \in E\) for \(i = 1, 2, \dots, n - 3\).
 
-		The idea now is that we can encode this sequence in \(G'\) to \(P' = (v^1_{in}, v^1_{out}, v^2_{in}, v^2_{out}, \dots, v^n_{in}, v^n_{out})\).
+		Then consider the permutation of nodes on \(V_o \cup V_i\), by the following:
 
-		Hence, if some \(v^i\) is repeated, then some \(v^i_{in}, v^i_{out}\) is repeated or if \((v^i, v^{i+1}) \notin E\) then \(v^i_{out}, v^{i+1}_{in} \notin E'\).
+		\(P' = (f_i(s), f_o(s), f_i(v_1), f_o(v_1), f_i(v_2), f_o(v_2), \dots f_i(v_{n-2}), f_o(v_{n-2}), f_i(t), f_o(t))\).
 
-		Thus, \(P'\) is not hamiltonian. Having taken arbitrary sequences, there is no hampath in \(G'\).
+		By construction, \(\{f_o(s), f_i(v_1)\}, \{f_o(v_{n-2}), f_i(t))\} \in E'\). As those directed edges exist in that order.
 
-		The converted sequences we used in \(G\) are the only sequences of size \(2n\) we need to consider in \(G'\).
+		Similarly, \(\{f_o{v_i}, f_i(v_{i+2})\} \in E'\) for \(i = 1, 2, \dots, n - 3\). But by definition, \(P'\) is a hamiltonian path in \(G'\).
 
-		Thus, the reduction is loosely correct.
+		Thus, UHP will return yes when asked if \(G'\) contains a hamiltonian path from \(f_i(s)\) to \(f_o(t)\).
 
-		The proof that those sequences in \(G\) are the only ones that we need to consider in \(G'\) is non-trivial.
+		This proves one direction, now assume that UHP returns yes upon begin given \(G' = (V_i \cup V_o, E')\).
+
+		We will show that this means there is a hamiltonian path in \(G\) from \(s\) to \(t\).
+
+		Observe that for any \((u, v) \in E\) that \(\{f_o(u),f_o(v)\}, \{f_i(u), f_i(v)\} \notin E'\) by construction.
+
+		In other words, the outcoming nodes do not connect to each other and the the incoming nodes do not connect to each other in \(G'\).
+
+		Thus, for any path in \(G'\) of the form, \(\rho = (v_1,v_2, \dots, v_k)\) if \(v_j \in V_o\) then \(v_{j+1} \in V_i\) for \(j = 1, 2, \dots, k - 1\).
+
+		Let \(P = (f_i(s), o_1, i_1, o_2, i_2, \dots, o_{n-1}, i_{n-1}, f_o(t))\) be the hamiltonian path from \(f_o(s)\) to \(f_i(t)\) in \(G'\) such that \(i_j \in V_i, o_j \in V_j\).
+
+		Now construct, \(P' = \)
+
+
+
+
 
 	\end{soln}
 
